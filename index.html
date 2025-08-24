@@ -43,6 +43,39 @@
             margin-inline:auto;
         }
         
+        /* === DECORATION STYLES (HIASAN BARU) === */
+        
+        /* Keyframes untuk pergerakan acak */
+        @keyframes drift {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0.8; }
+            25% { transform: translate(5vw, -5vh) rotate(5deg); opacity: 1; }
+            50% { transform: translate(-5vw, 5vh) rotate(-5deg); opacity: 0.8; }
+            75% { transform: translate(5vw, 5vh) rotate(5deg); opacity: 1; }
+            100% { transform: translate(0, 0) rotate(0deg); opacity: 0.8; }
+        }
+        
+        /* Keyframes untuk efek sparkle (kedip) */
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        .decoration-particle {
+            position: absolute;
+            color: var(--accent); /* Warna hiasan */
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            pointer-events: none;
+            z-index: 100;
+            animation: drift linear infinite alternate, sparkle 2s ease-in-out infinite;
+        }
+
+        /* Variasi animasi untuk pergerakan acak */
+        .decoration-particle:nth-child(3n+1) { animation-duration: 15s; animation-delay: 0s; }
+        .decoration-particle:nth-child(3n+2) { animation-duration: 20s; animation-delay: -5s; }
+        .decoration-particle:nth-child(3n) { animation-duration: 25s; animation-delay: -10s; }
+        .decoration-particle:nth-child(odd) { animation-direction: alternate-reverse; }
+        .decoration-particle:nth-child(even) { animation-direction: alternate; }
+        
         /* === DOOR (DARI SCRIPT B) === */
         .door-overlay{
             position:fixed;
@@ -57,6 +90,7 @@
             transition:opacity 1s ease;
             width:100vw;
             height:100vh;
+            overflow: hidden; /* Tambahkan agar partikel tidak keluar batas layar */
         }
         
         .door{
@@ -69,6 +103,7 @@
             backdrop-filter:blur(10px);
             border:1px solid rgba(255,255,255,.4);
             background:rgba(255,255,255,0.1);
+            z-index: 10000; /* Pastikan pintu di atas partikel */
         }
         
         .door span{
@@ -158,6 +193,7 @@
             position: relative;
             background: url('https://raw.githubusercontent.com/tewetech/tes/refs/heads/main/Background8-isi-panjang.jpg') center/cover no-repeat;
             background-attachment: scroll;
+            overflow: hidden; /* Tambahkan agar partikel tidak keluar batas container */
         }
         main::before{
             content: "";
@@ -166,6 +202,10 @@
             background: rgba(255,255,255,0.2);
             backdrop-filter: blur(6px);
             z-index: -1;
+        }
+        /* Posisi relatif untuk main agar partikel di dalamnya bisa diatur posisinya secara absolut */
+        main .decoration-particle {
+            z-index: 1; /* Di atas latar belakang blur tapi di bawah konten utama */
         }
         .hero{position:relative;min-height:88vh;display:grid;place-items:center;overflow:hidden;}
         .hero-inner{text-align:center;padding:2rem 1rem}
@@ -185,6 +225,8 @@
             backdrop-filter: blur(8px);
             box-shadow:0 8px 20px rgba(0,0,0,0.1);
             font-family:'Quicksand', sans-serif;
+            z-index: 5; /* Pastikan konten di atas partikel */
+            position: relative;
         }
         
         /* Revised Styles for the card with date and address */
@@ -197,7 +239,7 @@
         
         .hero-card .item,.card ul{margin-bottom:.8rem;}
         .event-card div{margin-bottom:.8rem;text-align:center;}
-        section{padding:1.5rem 0; text-align:center;}
+        section{padding:1.5rem 0; text-align:center; position: relative;} /* Tambahkan posisi relatif agar partikel di dalam section diatur dengan benar */
         .section-title{font-family:'Quicksand', sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);margin:0 0 .6rem;color:var(--brown-700);text-align:center;}
         .section-arab{direction:rtl; margin-bottom: 1rem; font-size: 2rem;}
         .section-sub{color:#7d6a58;margin:0 auto 1rem; text-align:center;font-family:'Quicksand', sans-serif; line-height: 1.4; max-width: 400px; font-size: 0.85rem;} /* Adjusted font-size */
@@ -419,6 +461,15 @@
 </head>
 <body>
     <div class="door-overlay" id="door">
+        <i class="fa-solid fa-star decoration-particle" style="top: 10%; left: 15%; animation-duration: 18s; animation-delay: -3s;"></i>
+        <i class="fa-solid fa-gem decoration-particle" style="top: 25%; left: 80%; animation-duration: 22s; animation-delay: -8s;"></i>
+        <i class="fa-solid fa-feather decoration-particle" style="top: 50%; left: 5%; animation-duration: 16s; animation-delay: -1s;"></i>
+        <i class="fa-solid fa-star decoration-particle" style="top: 70%; left: 90%; animation-duration: 19s; animation-delay: -6s;"></i>
+        <i class="fa-solid fa-gem decoration-particle" style="top: 90%; left: 30%; animation-duration: 24s; animation-delay: -11s;"></i>
+        <i class="fa-solid fa-feather decoration-particle" style="top: 5%; left: 45%; animation-duration: 17s; animation-delay: -4s;"></i>
+        <i class="fa-solid fa-ring decoration-particle" style="top: 35%; left: 30%; animation-duration: 21s; animation-delay: -7s; font-size: 1.3rem;"></i> <i class="fa-solid fa-star decoration-particle" style="top: 80%; left: 10%; animation-duration: 15s; animation-delay: -10s;"></i>
+        <i class="fa-solid fa-gem decoration-particle" style="top: 15%; left: 60%; animation-duration: 26s; animation-delay: -13s;"></i>
+        
         <div class="door">
             <span>Undangan Pernikahan</span>
             <span class="door-name">Chusnul & Tri</span>
@@ -428,10 +479,21 @@
             <button class="btn" id="openBtn">📩 Buka Undangan</button>
         </div>
     </div>
-    <audio id="bgMusic" src="https://raw.githubusercontent.com/tewetech/wedding-invitation-tri-chusnul/refs/heads/main/Pernikahan%20Kita.mp3" loop></audio>
+    <audio id="bgMusic" src="https://raw.githubusercontent.com/tewetech/wedding-invitation-tri-chusnul/refs/heads/main/Pernikahan%20Kita.mp3" ></audio>
     
     <main>
-        <header class="hero" id="home">
+        <i class="fa-solid fa-star decoration-particle" style="top: 20vh; left: 10%; font-size: 1.1rem; animation-duration: 20s; animation-delay: 0s;"></i>
+        <i class="fa-solid fa-gem decoration-particle" style="top: 40vh; left: 90%; font-size: 1.2rem; animation-duration: 24s; animation-delay: -6s;"></i>
+        <i class="fa-solid fa-feather decoration-particle" style="top: 70vh; left: 25%; font-size: 1.0rem; animation-duration: 18s; animation-delay: -3s;"></i>
+        <i class="fa-solid fa-star decoration-particle" style="top: 100vh; left: 70%; font-size: 1.2rem; animation-duration: 22s; animation-delay: -9s;"></i>
+        <i class="fa-solid fa-gem decoration-particle" style="top: 130vh; left: 5%; font-size: 1.0rem; animation-duration: 16s; animation-delay: -2s;"></i>
+        <i class="fa-solid fa-feather decoration-particle" style="top: 160vh; left: 85%; font-size: 1.1rem; animation-duration: 25s; animation-delay: -12s;"></i>
+        <i class="fa-solid fa-ring decoration-particle" style="top: 180vh; left: 40%; font-size: 1.3rem; animation-duration: 17s; animation-delay: -5s;"></i> <i class="fa-solid fa-star decoration-particle" style="top: 200vh; left: 40%; font-size: 1.2rem; animation-duration: 19s; animation-delay: -4s;"></i>
+        <i class="fa-solid fa-gem decoration-particle" style="top: 230vh; left: 15%; font-size: 1.0rem; animation-duration: 21s; animation-delay: -7s;"></i>
+        <i class="fa-solid fa-feather decoration-particle" style="top: 260vh; left: 60%; font-size: 1.1rem; animation-duration: 23s; animation-delay: -10s;"></i>
+        <i class="fa-solid fa-star decoration-particle" style="top: 280vh; left: 80%; font-size: 1.0rem; animation-duration: 15s; animation-delay: -1s;"></i>
+        <i class="fa-solid fa-gem decoration-particle" style="top: 310vh; left: 20%; font-size: 1.2rem; animation-duration: 27s; animation-delay: -14s;"></i>
+        <i class="fa-solid fa-ring decoration-particle" style="top: 340vh; left: 90%; font-size: 1.3rem; animation-duration: 20s; animation-delay: -8s;"></i> <header class="hero" id="home">
             <div class="hero-inner container">
                 <span class="badge">Undangan Pernikahan</span>
                 <h1 class="names">
@@ -440,7 +502,7 @@
                     <span>Tri Wantoro</span>
                 </h1>
                 <div class="event-card fade-in unified-card" style="text-align:center; font-size:0.85rem; line-height:1.6;">
-                    “ Di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis) dirimu sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir. ”
+                    “ Di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis) dirimu sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antarmu rasa cinta dan kasih sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir. ”
                     <br><br>
                     <strong style="font-family:'Quicksand', sans-serif;">{ Q.S : Ar-Rum (30) : 21 }</strong>
                 </div>

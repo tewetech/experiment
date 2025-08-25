@@ -20,7 +20,7 @@
             --text:#3b2f26;
         }
         *{box-sizing:border-box}
-        /* Menggunakan properti dari SCRIPT B untuk body dan html agar kompatibel dengan layout baru */
+        /* Mengatur tinggi dan lebar agar sesuai dengan viewport */
         html,body{
             height:100vh;
             width:100vw;
@@ -43,9 +43,9 @@
             margin-inline:auto;
         }
         
-        /* === DECORATION STYLES (HIASAN BARU) === */
+        /* === GAYA DEKORASI (PARTIKEL MENGAMBANG) === */
         
-        /* Keyframes untuk pergerakan acak */
+        /* Keyframes untuk pergerakan acak partikel */
         @keyframes drift {
             0% { transform: translate(0, 0) rotate(0deg); opacity: 0.8; }
             25% { transform: translate(5vw, -5vh) rotate(5deg); opacity: 1; }
@@ -76,7 +76,7 @@
         .decoration-particle:nth-child(odd) { animation-direction: alternate-reverse; }
         .decoration-particle:nth-child(even) { animation-direction: alternate; }
         
-        /* === DOOR (DARI SCRIPT B) === */
+        /* === OVERLAY PINTU MASUK (DOOR) === */
         .door-overlay{
             position:fixed;
             inset:0;
@@ -90,7 +90,7 @@
             transition:opacity 1s ease;
             width:100vw;
             height:100vh;
-            overflow: hidden; /* Tambahkan agar partikel tidak keluar batas layar */
+            overflow: hidden; /* Mencegah partikel keluar batas layar saat overlay aktif */
         }
         
         .door{
@@ -106,6 +106,7 @@
             z-index: 10000; /* Pastikan pintu di atas partikel */
         }
         
+        /* Efek transisi untuk teks di pintu masuk */
         .door span{
             display:block;
             opacity:0;
@@ -187,14 +188,16 @@
             transform:scale(.97);
         }
 
-        /* === UNDANGAN (DARI SCRIPT A - TIDAK BERUBAH) === */
+        /* === GAYA UTAMA UNDANGAN === */
         main{
             display:none;
             position: relative;
+            /* Latar belakang utama undangan */
             background: url('https://raw.githubusercontent.com/tewetech/tes/refs/heads/main/Background8-isi-panjang.jpg') center/cover no-repeat;
             background-attachment: scroll;
-            overflow: hidden; /* Tambahkan agar partikel tidak keluar batas container */
+            overflow: hidden; /* Memastikan partikel tetap dalam batas container utama */
         }
+        /* Efek overlay blur pada latar belakang utama */
         main::before{
             content: "";
             position: absolute;
@@ -203,7 +206,7 @@
             backdrop-filter: blur(6px);
             z-index: -1;
         }
-        /* Posisi relatif untuk main agar partikel di dalamnya bisa diatur posisinya secara absolut */
+        /* Mengatur z-index partikel di dalam main */
         main .decoration-particle {
             z-index: 1; /* Di atas latar belakang blur tapi di bawah konten utama */
         }
@@ -211,9 +214,11 @@
         .hero-inner{text-align:center;padding:2rem 1rem}
         .badge{display:inline-block;padding:.5rem 1rem;background: rgba(255,255,255,0.3); border-radius:999px; color:var(--brown-700); letter-spacing:.08em; font-size:.8rem; backdrop-filter: blur(6px);}
         h1.names{font-family:"Great Vibes", cursive;font-weight:400;font-size:clamp(2.6rem,6vw,2.6rem);letter-spacing:.02em;color:var(--brown-700); line-height:1.2}
+        /* Animasi muncul untuk nama */
         h1.names span{display:block;opacity:0;transform:translateY(20px);transition: all 0.8s ease-out;}
         h1.names span.show{opacity:1;transform:translateY(0);}
         .and{font-family:'Playfair Display', serif;font-weight:400;color:var(--accent)}
+        /* Gaya dasar untuk semua kartu (dengan efek glassmorphism) */
         .card, .event-card, .couple-card, .gift-card {
             width:80%;
             max-width:320px;
@@ -229,7 +234,7 @@
             position: relative;
         }
         
-        /* Revised Styles for the card with date and address */
+        /* Kartu tanpa efek glassmorphism (digunakan di bagian hero) */
         .card.no-glass {
             background: none;
             border: none;
@@ -239,10 +244,10 @@
         
         .hero-card .item,.card ul{margin-bottom:.8rem;}
         .event-card div{margin-bottom:.8rem;text-align:center;}
-        section{padding:1.5rem 0; text-align:center; position: relative;} /* Tambahkan posisi relatif agar partikel di dalam section diatur dengan benar */
+        section{padding:1.5rem 0; text-align:center; position: relative;} /* Mengatur posisi relatif agar partikel di dalam section diatur dengan benar */
         .section-title{font-family:'Quicksand', sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);margin:0 0 .6rem;color:var(--brown-700);text-align:center;}
         .section-arab{direction:rtl; margin-bottom: 1rem; font-size: 2rem;}
-        .section-sub{color:#7d6a58;margin:0 auto 1rem; text-align:center;font-family:'Quicksand', sans-serif; line-height: 1.4; max-width: 400px; font-size: 0.85rem;} /* Adjusted font-size */
+        .section-sub{color:#7d6a58;margin:0 auto 1rem; text-align:center;font-family:'Quicksand', sans-serif; line-height: 1.4; max-width: 400px; font-size: 0.85rem;} /* Ukuran font disesuaikan */
         .grid{display:grid;gap:1rem; justify-content: center;}
         .grid-2 {
             grid-template-columns: 1fr;
@@ -254,18 +259,22 @@
         .couple-name{font-family:"Great Vibes", cursive;font-weight:400;font-size:2rem;margin:.8rem 0 .3rem;color:var(--brown-700)}
         .parents{font-size:.95rem;color:#7a6756;font-family:'Quicksand', sans-serif;}
         .timeline{position:relative;margin:0;padding:0;list-style:none;font-family:'Quicksand', sans-serif; text-align: left;}
+        /* Garis vertikal pada timeline */
         .timeline::before{content:"";position:absolute;left:10px;top:0;bottom:0;width:2px;background:rgba(255,255,255,0.3)}
-        .timeline li{position:relative;padding-left:2.2rem;margin-bottom:1rem; font-size: 0.85rem;} /* Adjusted font-size */
+        .timeline li{position:relative;padding-left:2.2rem;margin-bottom:1rem; font-size: 0.85rem;} /* Ukuran font disesuaikan */
+        /* Titik penanda pada timeline */
         .dot{position:absolute;left:2px;top:.3rem;width:16px;height:16px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4 rgba(255,255,255,0.2)}
         form{display:grid;gap:.8rem;font-family:'Quicksand', sans-serif;}
-        input, textarea, select{width:100%;padding:.7rem 0.9rem;border-radius:.7rem;background: rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);backdrop-filter: blur(6px);color: var(--text); font-size: 0.9rem;} /* Adjusted font-size and padding */
-        label{font-weight:600;color:#6b5a4a; font-size: 0.9rem;} /* Adjusted font-size */
-        footer{padding:2rem 0;text-align:center;color:#6c5847;font-family:'Quicksand', sans-serif; font-size: 0.85rem;} /* Adjusted font-size */
+        input, textarea, select{width:100%;padding:.7rem 0.9rem;border-radius:.7rem;background: rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);backdrop-filter: blur(6px);color: var(--text); font-size: 0.9rem;} /* Ukuran font dan padding disesuaikan */
+        label{font-weight:600;color:#6b5a4a; font-size: 0.9rem;} /* Ukuran font disesuaikan */
+        footer{padding:2rem 0;text-align:center;color:#6c5847;font-family:'Quicksand', sans-serif; font-size: 0.85rem;} /* Ukuran font disesuaikan */
+        /* Garis pemisah dengan gradien */
         .divider{height:1px;background:linear-gradient(90deg,transparent, rgba(255,255,255,0.3), transparent);margin:1.5rem auto; width: 80%;}
+        /* Kelas untuk efek 'fade-in' (muncul saat di-scroll) */
         .fade-in {opacity:0;transform:translateY(30px);transition: opacity .8s ease-out, transform .8s ease-out;}
         .fade-in.show {opacity:1;transform:translateY(0);}
-        .event-card .couple-name {text-align: left !important; font-size: 1.1rem;} /* Adjusted font-size */
-        /* Countdown specific styles */
+        .event-card .couple-name {text-align: left !important; font-size: 1.1rem;} /* Ukuran font disesuaikan */
+        /* Gaya spesifik untuk Countdown */
         .countdown-container {
             display: flex;
             justify-content: center;
@@ -299,7 +308,7 @@
             text-transform: uppercase;
             color: #7a6756;
         }
-        /* Unified Card Width */
+        /* Mengatur lebar maksimum terpadu untuk semua kartu */
         .unified-card {
             max-width: 400px;
             width: 100%;
@@ -310,7 +319,7 @@
             margin-left: auto;
             margin-right: auto;
         }
-        /* === Floating buttons (revisi) === */
+        /* === Tombol Mengambang (Floating Buttons) === */
         .floating-buttons {
             position: fixed;
             bottom: 1.5rem;
@@ -328,6 +337,7 @@
             width: 38px;
             height: 38px;
             border-radius: 50%;
+            /* Efek glassmorphism pada tombol mengambang */
             background: rgba(255, 255, 255, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(4px);
@@ -343,7 +353,7 @@
             transform: scale(1.05);
             background: rgba(255, 255, 255, 0.5);
         }
-        /* Revised .map-btn style to have glass effect */
+        /* Gaya tombol peta dengan efek glassmorphism */
         .map-btn{
             display: inline-flex;
             align-items: center;
@@ -367,7 +377,7 @@
             box-shadow: 0 8px 22px rgba(0,0,0,.25);
             background: rgba(255, 255, 255, 0.25);
         }
-        /* Gift Card Styles */
+        /* Gaya Kartu Hadiah (Gift Card) */
         .gift-card {
             padding: 2rem;
             max-width: 400px;
@@ -377,7 +387,7 @@
             margin: 0 auto 1rem;
         }
         .gift-card .account-number {
-            font-size: 1rem; /* Adjusted font-size */
+            font-size: 1rem; /* Ukuran font disesuaikan */
             font-weight: 600;
             color: var(--brown-700);
             margin: .5rem 0 1rem;
@@ -391,7 +401,7 @@
         .copy-btn:hover {
             background-color: #a5865b;
         }
-        /* Override .grid-2 for vertical layout on all screen sizes */
+        /* Menimpa .grid-2 untuk tata letak vertikal di semua ukuran layar */
         .couple-section .grid-2,
         .event-section .grid-2,
         .gift-section .grid-2 {
@@ -399,7 +409,7 @@
             justify-items: center;
         }
         
-        /* RESPONSIVE ADJUSTMENTS DARI SCRIPT B untuk mobile */
+        /* PENYESUAIAN RESPONSIVE untuk perangkat mobile */
         @media (max-width: 480px) {
             .container{
                 padding:0 12px;
@@ -638,7 +648,7 @@ Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Apabila memberi 
         </div>
     </main>
     <script>
-        // DOM Elements
+        // Elemen DOM
         const door = document.getElementById('door');
         const openBtn = document.getElementById('openBtn');
         const bgMusic = document.getElementById('bgMusic');
@@ -647,15 +657,17 @@ Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Apabila memberi 
         const musicIcon = document.getElementById('music-icon');
         const guestNameElement = document.getElementById('guestName');
 
-        // FADE IN ELEMENTS (DARI SCRIPT A)
+        // Elemen yang akan di-fade in
         const faders = document.querySelectorAll('.card, .couple-card, .event-card, .unified-card');
         const appearOptions = { threshold: 0.1 };
+        // Observer untuk animasi fade-in saat di-scroll
         const appearOnScroll = new IntersectionObserver((entries)=>{
             entries.forEach(entry => {
                 if(entry.isIntersecting){entry.target.classList.add('show');}
                 else{entry.target.classList.remove('show');}
             });
         }, appearOptions);
+        // Memulai observasi untuk elemen fade-in
         function observeFadeElements() {
             faders.forEach(fader => {
                 fader.classList.add('fade-in');
@@ -663,13 +675,13 @@ Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Apabila memberi 
             });
         }
         
-        // NAMES ANIMATION (DARI SCRIPT A)
+        // Animasi muncul nama pengantin
         const nameSpans = document.querySelectorAll('h1.names span');
         function animateNameSpans() {
             nameSpans.forEach((span,i)=>{setTimeout(()=>{span.classList.add('show');}, i*500);});
         }
         
-        // DOOR ANIMATION (DARI SCRIPT B)
+        // Animasi muncul teks di pintu masuk (door)
         function animateDoorSpans() {
             const doorSpans = document.querySelectorAll('.door span');
             doorSpans.forEach((span, index) => {
@@ -679,7 +691,7 @@ Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Apabila memberi 
             });
         }
 
-        // Initialize guest name (DARI SCRIPT B)
+        // Mengambil dan menampilkan nama tamu dari URL
         function getGuestName() {
             const urlParams = new URLSearchParams(window.location.search);
             const name = urlParams.get('to');
@@ -691,22 +703,22 @@ Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Apabila memberi 
         }
         getGuestName();
 
-        // Open invitation (MODIFIKASI DARI SCRIPT B)
+        // Fungsi saat tombol "Buka Undangan" diklik
         openBtn.addEventListener('click', ()=>{
-            bgMusic.play().catch(e => { console.log('Audio autoplay was prevented:', e); });
+            bgMusic.play().catch(e => { console.log('Autoplay audio dicegah:', e); });
             door.style.opacity="0";
             setTimeout(()=> door.style.display="none",1000);
             main.style.display="block";
             document.body.style.overflow="auto";
             
-            // Trigger animations
+            // Memicu animasi setelah pintu terbuka
             setTimeout(() => {
                 animateNameSpans();
                 observeFadeElements();
             }, 100);
         });
 
-        // Music toggle functionality (DARI SCRIPT A)
+        // Fungsionalitas Tombol Musik
         musicToggleBtn.addEventListener('click', () => {
             if (bgMusic.paused) {
                 bgMusic.play();
@@ -719,8 +731,9 @@ Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Apabila memberi 
             }
         });
 
-        // Countdown Timer (DARI SCRIPT A)
+        // Timer Hitung Mundur (Countdown)
         const elCountdown = document.getElementById('countdown');
+        // Tanggal target: 28 Desember 2025
         const target = new Date("2025-12-28T00:00:00").getTime();
         function tick(){
             const now = Date.now();
@@ -755,7 +768,7 @@ Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Apabila memberi 
         }
         const timer=setInterval(tick,1000); tick();
         
-        // RSVP Form Handler (DARI SCRIPT A)
+        // Handler Formulir RSVP (Kirim via WhatsApp)
         document.getElementById('rsvpForm').addEventListener('submit', e=>{
             e.preventDefault();
             const nama=document.getElementById('nama').value;
@@ -764,13 +777,14 @@ Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Apabila memberi 
             const pesan=document.getElementById('pesan').value;
             const text=`Assalamu'alaikum, saya ingin konfirmasi kehadiran.\nNama: ${nama}\nJumlah: ${jumlah}\nKehadiran: ${kehadiran}\nPesan: ${pesan}`;
             const waText=encodeURIComponent(text);
+            // Buka WhatsApp dengan pesan yang sudah diisi
             window.open(`https://wa.me/6282323624177?text=${waText}`,'_blank');
         });
 
-        // Set current year in footer (DARI SCRIPT A)
+        // Mengatur tahun saat ini di footer
         document.getElementById('year').textContent=new Date().getFullYear();
 
-        // Copy button functionality (DARI SCRIPT A)
+        // Fungsionalitas Tombol Salin (Copy Button)
         document.querySelectorAll('.copy-btn').forEach(button => {
             button.addEventListener('click', () => {
                 const targetSelector = button.getAttribute('data-target');
@@ -778,6 +792,7 @@ Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Apabila memberi 
                 navigator.clipboard.writeText(accountNumber).then(() => {
                     const originalText = button.innerText;
                     button.innerText = 'Tersalin!';
+                    // Mengembalikan teks tombol setelah 2 detik
                     setTimeout(() => {
                         button.innerText = originalText;
                     }, 2000);
@@ -787,12 +802,12 @@ Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Apabila memberi 
             });
         });
         
-        // Initialize door animation (DARI SCRIPT B)
+        // Inisialisasi animasi teks di pintu masuk saat DOM selesai dimuat
         document.addEventListener('DOMContentLoaded', () => {
             animateDoorSpans();
         });
 
-        // Smooth scrolling for anchor links (DARI SCRIPT B - opsional tapi membantu)
+        // Smooth scrolling untuk link anchor (misalnya tombol mengambang)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();

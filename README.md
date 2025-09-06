@@ -1,136 +1,75 @@
-#!/bin/bash
+# Nama Proyek Anda
+### Deskripsi Singkat Proyek
 
+> Tuliskan deskripsi singkat yang menarik dan mudah dipahami tentang proyek Anda. Apa fungsinya? Apa masalah yang diselesaikannya?
 
-# Fungsi untuk menampilkan menu utama
-show_menu() {
-    echo "=========================================="
-    echo "    GitHub README Generator 🤖"
-    echo "=========================================="
-    echo "Pilih opsi untuk README Anda:"
-    echo "1. Tambah judul utama"
-    echo "2. Tambah deskripsi proyek"
-    echo "3. Tambah badge (misalnya, status build, lisensi)"
-    echo "4. Tambah bagian 'Fitur'"
-    echo "5. Tambah bagian 'Cara Menginstal'"
-    echo "6. Tambah bagian 'Penggunaan'"
-    echo "7. Tambah bagian 'Kontribusi'"
-    echo "8. Tambah bagian 'Lisensi'"
-    echo "9. Pratinjau README.md"
-    echo "10. Selesai & simpan README.md"
-    echo "11. Keluar tanpa menyimpan"
-    echo "=========================================="
-    read -p "Masukkan pilihan Anda (1-11): " choice
-}
+---
 
+## 🚀 Fitur Unggulan
 
-# Fungsi untuk menambahkan judul
-add_title() {
-    read -p "Masukkan judul utama proyek: " title
-    echo "# $title" >> README.md
-    echo "Judul berhasil ditambahkan. ✅"
-}
+* ✨ **Fitur 1**: Jelaskan secara singkat apa yang dilakukan fitur ini.
+* 🎨 **Fitur 2**: Jelaskan keunggulan fitur ini.
+* 🔧 **Fitur 3**: Sebutkan fitur penting lainnya.
 
+---
 
-# Fungsi untuk menambahkan deskripsi
-add_description() {
-    read -p "Masukkan deskripsi singkat proyek: " desc
-    echo "" >> README.md
-    echo "$desc" >> README.md
-    echo "Deskripsi berhasil ditambahkan. ✅"
-}
+## 🛠️ Teknologi yang Digunakan
 
+| Kategori | Teknologi | Deskripsi |
+| :--- | :--- | :--- |
+| **Frontend** | React, Vue.js | UI interaktif dan responsif. |
+| **Backend** | Node.js, Python Flask | Server-side logic dan API. |
+| **Database** | PostgreSQL, MongoDB | Manajemen data. |
+| **Lain-lain** | Docker, Git, CI/CD | Deployment dan versi kontrol. |
 
-# Fungsi untuk menambahkan badge
-add_badge() {
-    echo "Pilih jenis badge yang ingin ditambahkan:"
-    echo "1. Lisensi"
-    echo "2. Status Build (dari GitHub Actions)"
-    echo "3. Lainnya (masukkan URL manual)"
-    read -p "Pilihan Anda: " badge_choice
+---
 
+## 📦 Panduan Instalasi
 
-    case $badge_choice in
-        1)
-            read -p "Masukkan nama lisensi (misalnya, MIT, Apache-2.0): " license_name
-            badge_url="https://img.shields.io/badge/Lisensi-$license_name-blue.svg"
-            link_url="https://opensource.org/licenses/$license_name"
-            ;;
-        2)
-            read -p "Masukkan nama user/repo (misalnya, username/repo-name): " repo_name
-            badge_url="https://github.com/$repo_name/actions/workflows/main.yml/badge.svg"
-            link_url="https://github.com/$repo_name/actions/workflows/main.yml"
-            ;;
-        3)
-            read -p "Masukkan URL badge (gambar): " badge_url
-            read -p "Masukkan URL tautan badge: " link_url
-            ;;
-        *)
-            echo "Pilihan tidak valid."
-            return
-            ;;
-    esac
-    echo "[![]($badge_url)]($link_url)" >> README.md
-    echo "Badge berhasil ditambahkan. ✅"
-}
+Ikuti langkah-langkah di bawah untuk menjalankan proyek ini di mesin lokal Anda.
 
+1.  **Clone repositori:**
+    ```bash
+    git clone [https://github.com/nama-user/nama-proyek.git](https://github.com/nama-user/nama-proyek.git)
+    ```
 
-# Fungsi untuk menambahkan bagian dengan header
-add_section() {
-    read -p "Masukkan judul bagian (misalnya, Fitur, Instalasi, Penggunaan): " section_title
-    echo "" >> README.md
-    echo "---" >> README.md
-    echo "## $section_title" >> README.md
-    read -p "Sekarang, masukkan konten untuk bagian '$section_title'. Tekan ENTER untuk baris baru, lalu ketik 'END' pada baris baru dan tekan ENTER lagi saat selesai."
-    while IFS= read -r line
-    do
-        if [[ "$line" == "END" ]]; then
-            break
-        fi
-        echo "$line" >> README.md
-    done
-    echo "Bagian '$section_title' berhasil ditambahkan. ✅"
-}
+2.  **Masuk ke direktori proyek:**
+    ```bash
+    cd nama-proyek
+    ```
 
+3.  **Instal dependensi:**
+    ```bash
+    npm install  # atau yarn install, pip install, dll.
+    ```
 
-# Loop utama program
-while true
-do
-    show_menu
+4.  **Jalankan proyek:**
+    ```bash
+    npm start  # atau sesuai dengan perintah di package.json
+    ```
 
+---
 
-    case $choice in
-        1)
-            add_title
-            ;;
-        2)
-            add_description
-            ;;
-        3)
-            add_badge
-            ;;
-        4|5|6|7|8)
-            add_section
-            ;;
-        9)
-            echo ""
-            echo "=========================================="
-            echo "        Pratinjau README.md"
-            echo "=========================================="
-            cat README.md
-            echo "=========================================="
-            ;;
-        10)
-            echo "Selesai! File README.md Anda telah dibuat. ✨"
-            break
-            ;;
-        11)
-            rm README.md 2> /dev/null
-            echo "Keluar. File tidak disimpan. 🚮"
-            exit 0
-            ;;
-        *)
-            echo "Pilihan tidak valid. Silakan coba lagi."
-            ;;
-    esac
-    echo ""
-done
+## 🤝 Cara Berkontribusi
+
+Kami sangat menyambut kontribusi Anda! Jika Anda ingin berkontribusi, silakan ikuti panduan berikut:
+
+1.  Fork repositori ini.
+2.  Buat branch baru: `git checkout -b fitur-baru`
+3.  Lakukan perubahan dan commit: `git commit -m 'Tambahkan fitur baru'`
+4.  Push ke branch Anda: `git push origin fitur-baru`
+5.  Buat Pull Request (PR).
+
+---
+
+## 📜 Lisensi
+
+Proyek ini dilisensikan di bawah **[Lisensi MIT](https://github.com/nama-user/nama-proyek/blob/main/LICENSE)**.
+
+---
+
+## 👨‍💻 Kontak
+
+Nama Anda - [LinkedIn](https://www.linkedin.com/in/nama-anda/) - [Email](mailto:email@contoh.com)
+
+Link Proyek: [https://github.com/nama-user/nama-proyek](https://github.com/nama-user/nama-proyek)

@@ -1,55 +1,30 @@
-![Status Proyek](https://img.shields.io/badge/status-dalam%20pengembangan-yellow)
-![Versi](https://img.shields.io/badge/versi-1.0.0-blue)
-![Lisensi](https://img.shields.io/badge/lisensi-MIT-green)
-![Kontributor](https://img.shields.io/github/contributors/nama-user/nama-proyek?color=darkgreen)
+![Lisensi](https://img.shields.io/github/license/nama-user/nama-proyek?style=flat-square)
+![Versi](https://img.shields.io/github/package-json/v/nama-user/nama-proyek?style=flat-square)
+![Top Language](https://img.shields.io/github/languages/top/nama-user/nama-proyek?style=flat-square)
+![Tautan Web](https://img.shields.io/badge/Live%20Demo-klik%20di%20sini-blue?style=flat-square)
+
+# Nama Proyek Anda
+### Proyek [Jenis Proyek]
 
 <br />
 
-# Nama Proyek Anda
-### Deskripsi Singkat yang Menarik
-
-> Tuliskan deskripsi singkat namun kuat yang menjelaskan inti dari proyek Anda. Apa masalah yang diselesaikan? Untuk siapa proyek ini dibuat?
-
-![Demo Proyek](https://raw.githubusercontent.com/nama-user/nama-proyek/main/path/to/demo.gif)
-*Sertakan GIF atau gambar yang menunjukkan cara kerja proyek Anda secara visual.*
+> **Deskripsi:** Tuliskan deskripsi singkat yang mudah dipahami tentang apa yang dilakukan proyek ini dan masalah apa yang diselesaikannya.
 
 ---
 
-### 🚀 Fitur Unggulan
+### 🚀 Fitur
 
-* **Fitur 1**: Jelaskan fitur utama dan keunggulannya.
-* **Fitur 2**: Deskripsikan fitur penting lainnya.
-* **Fitur 3**: Sebutkan fitur yang membuat proyek Anda unik.
-
----
-
-### 🛠️ Teknologi yang Digunakan
-
-Proyek ini dibangun menggunakan teknologi-teknologi berikut:
-
-| Kategori      | Teknologi           | Deskripsi                       |
-| :------------ | :------------------ | :------------------------------ |
-| **Frontend** | `React.js`, `Tailwind CSS` | Antarmuka pengguna yang modern dan responsif. |
-| **Backend** | `Node.js`, `Express`  | Logic server dan API yang efisien. |
-| **Database** | `MongoDB`           | Database NoSQL yang fleksibel. |
-| **Lain-lain** | `Docker`, `Git`      | Virtualisasi dan sistem kontrol versi. |
+- **Fitur 1**: Jelaskan secara singkat apa yang dilakukan fitur ini.
+- **Fitur 2**: Jelaskan keunggulan fitur ini.
+- **Fitur 3**: Sebutkan fitur penting lainnya.
 
 ---
 
-### 📦 Panduan Instalasi & Penggunaan
+### 💻 Instalasi & Penggunaan
 
 Ikuti langkah-langkah di bawah untuk menjalankan proyek ini di mesin lokal Anda.
 
-#### 1. Persiapan
-Pastikan Anda sudah menginstal **Git** dan **Node.js**.
-
-#### 2. Instalasi
+#### 1. Clone Repositori
 ```bash
-# Clone repositori
 git clone [https://github.com/nama-user/nama-proyek.git](https://github.com/nama-user/nama-proyek.git)
-
-# Masuk ke direktori proyek
 cd nama-proyek
-
-# Instal semua dependensi
-npm install

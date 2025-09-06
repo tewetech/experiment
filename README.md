@@ -1,8 +1,3 @@
-# Selamat Datang di Repositori Saya 👋
-
-![Terminal Style Banner](https://img.shields.io/badge/Status-Online-brightgreen?style=for-the-badge&logo=github)
-
-```bash
 $ whoami
 user@github
 

@@ -1,1174 +1,618 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/tewetech/nota/refs/heads/main/favicon-nota.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice & Nota Tewe Creative</title>
+    <title>Galeri Tools & Link Canggih | [Nama Anda]</title>
+    <meta name="description" content="Koleksi kurasi link paling canggih, tools AI, dan sumber daya esensial untuk para desainer, developer, dan tech enthusiast masa depan.">
+    <meta name="keywords" content="desain, teknologi, link keren, web design, front-end, inspirasi, tools, designer, tech, developer, sumber daya, komunitas, tutorial, AI, kecerdasan buatan, otomatisasi, UI/UX, 3D">
+    <meta name="author" content="[Nama Anda]">
+
+    <meta property="og:title" content="Galeri Tools & Link Canggih | [Nama Anda]">
+    <meta property="og:description" content="Koleksi kurasi link paling canggih, tools AI, dan sumber daya esensial untuk para desainer, developer, dan tech enthusiast masa depan.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://[domain-kamu].com/index.html">
+    <meta property="og:image" content="https://[domain-kamu].com/social-share-image.jpg">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /*
-         * Gaya CSS Global dan Struktur Halaman
-         * Mengatur font, margin, padding, dan layout dasar halaman.
-         * Menggunakan Flexbox untuk menengahkan konten utama.
-         */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #e0e6e9;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            gap: 20px;
+        /* ==================== */
+        /* CSS Variabel & Reset */
+        /* ==================== */
+        :root {
+            --bg-dark: #0A1128; /* Warna latar belakang utama, biru tua */
+            --bg-light: #151F3D; /* Latar belakang elemen, sedikit lebih cerah */
+            --card-bg: rgba(21, 31, 61, 0.5); /* Latar belakang kartu semi-transparan */
+            --card-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #E0E7FF; /* Warna teks utama, putih kebiruan */
+            --text-secondary: #A0A8C0; /* Warna teks sekunder, abu-abu kebiruan */
+            --accent-color-1: #6A79F7; /* Warna aksen pertama, biru keunguan */
+            --accent-color-2: #8E60FA; /* Warna aksen kedua, ungu yang lebih cerah */
+            --accent-glow: 0 0 15px var(--accent-color-1), 0 0 25px var(--accent-color-2);
+            --shadow-outer: 0 20px 50px rgba(0, 0, 0, 0.5);
+            --shadow-inner: inset 0 0 10px rgba(0, 0, 0, 0.2);
+            --font-main: 'Poppins', sans-serif;
+            --font-heading: 'Montserrat', sans-serif;
         }
 
-        /*
-         * Kontainer Utama (Nota & Invoice)
-         * Mengatur lebar, padding, latar belakang, dan bayangan untuk kotak dokumen.
-         */
-        .document-container {
-            width: 800px;
-            padding: 40px;
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            position: relative;
-            overflow: hidden;
-            flex-shrink: 0;
-            transition: all 0.5s ease-in-out;
-        }
-
-        /*
-         * Kelas untuk menyembunyikan kontainer saat tidak aktif
-         */
-        .document-container.hidden {
-            display: none;
-        }
-
-        /*
-         * Header Dokumen (Kop Surat)
-         * Layout kiri-kanan dengan elemen-elemen di sisi yang berlawanan.
-         */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #cfd8dc;
-            padding-bottom: 10px;
-        }
-
-        /*
-         * Bagian Kiri Header
-         * Mengatur posisi logo dan info perusahaan.
-         */
-        .header-left {
-            display: flex;
-            align-items: center;
-            margin-left: -40px;
-        }
-
-        /*
-         * Logo Perusahaan
-         * Mengatur ukuran logo.
-         */
-        .logo {
-            width: 170px;
-            height: 120px;
-            margin-right: 1px;
-            border-radius: 1%;
-            object-fit: cover;
-        }
-
-        /*
-         * Info Perusahaan
-         * Mengatur font dan warna untuk nama perusahaan dan deskripsi.
-         */
-        .company-info h1 {
-            margin: 0;
-            font-size: 1.8em;
-            color: #2c3e50;
-        }
-
-        .company-info p {
-            margin: 5px 0 0;
-            font-size: 0.9em;
-            color: #7f8c8d;
-        }
-
-        /*
-         * Bagian Kanan Header
-         * Mengatur posisi teks dokumen (E-NOTA/E-INVOICE) dan nomornya.
-         */
-        .header-right {
-            text-align: right;
-        }
-
-        .header-right h2 {
-            margin: 0;
-            font-size: 2.5em;
-            color: #2c3e50;
-        }
-
-        .header-right p {
-            margin: 5px 0 0;
-            font-size: 0.9em;
-            color: #555;
-            /* Tambahkan style untuk membuat teks nomor dokumen bisa diedit */
-            outline: none;
-        }
-
-        /*
-         * Bagian Informasi Pelanggan
-         * Mengatur layout menggunakan Flexbox untuk perataan yang lebih baik.
-         */
-        .info-section {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            margin-bottom: 30px;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: baseline;
-        }
-
-        .info-item label {
-            font-weight: bold;
-            color: #4a6572;
-            width: 120px;
-        }
-
-        /* Gaya untuk simbol titik dua */
-        .info-item .colon {
-            font-weight: bold;
-            color: #4a6572;
-        }
-        
-        /* Mengatur jarak agar data sedikit bergeser ke kanan */
-        /* Tambahkan gaya agar elemen span bisa diedit */
-        .info-item span {
-            color: #2c3e50;
-            margin-left: 5px;
-            outline: none;
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-
-        .info-item span:focus {
-            background-color: #f0f4f7;
-        }
-
-        /*
-         * Tabel Barang
-         * Menambahkan styling latar belakang abu-abu pada thead dan border di luar tabel.
-         * REVISI: Menambahkan overflow-x untuk scroll horizontal dan menyembunyikan scrollbar.
-         */
-        .table-container {
-            margin-bottom: 30px;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #bdc3c7;
-            /* REVISI: Mengaktifkan scroll horizontal */
-            overflow-x: auto;
-            /* REVISI: Menyembunyikan scrollbar di Firefox */
-            scrollbar-width: none; 
-            -ms-overflow-style: none; /* Menyembunyikan scrollbar di IE/Edge */
-        }
-        
-        /* REVISI: Menyembunyikan scrollbar di Chrome, Safari, dan Opera */
-        .table-container::-webkit-scrollbar {
-            display: none;
-        }
-
-        table {
-            /* REVISI: Mengatur lebar agar tabel melebihi container */
-            width: 1000px;
-            border-collapse: collapse;
-            font-size: 0.9em;
-            table-layout: fixed;
-        }
-
-        thead {
-            background-color: #eceff1;
-            color: #34495e;
-        }
-
-        thead tr th:first-child {
-            border-top-left-radius: 8px;
-        }
-        thead tr th:last-child {
-            border-top-right-radius: 8px;
-        }
-
-        th, td {
-            padding: 12px 10px;
-            border-bottom: 1px solid #dde1e5;
-        }
-
-        /* Mengatur lebar kolom tabel */
-        th:nth-child(1), td:nth-child(1) { width: 40px; text-align: center; }
-        th:nth-child(2), td:nth-child(2) { width: 70px; text-align: center; }
-        th:nth-child(3), td:nth-child(3) { width: 220px; }
-        th:nth-child(4), td:nth-child(4) { width: 120px; text-align: right; }
-        th:nth-child(5), td:nth-child(5) { width: 160px; text-align: right; white-space: nowrap; }
-        th:nth-child(6), td:nth-child(6) { width: 70px; text-align: center; }
-
-        tbody tr:nth-child(even) {
-            background-color: #f6f8f9;
-        }
-
-        td input {
-            width: 100%;
-            border: none;
-            background: transparent;
-            padding: 5px;
-            text-align: inherit;
-            color: #2c3e50;
-            outline: none; /* Hilangkan outline default */
-        }
-        
-        td input:focus {
-            background-color: #f0f4f7;
-        }
-
-        /*
-         * Bagian Ringkasan
-         * Mengatur layout Flexbox untuk catatan dan total.
-         */
-        .summary-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        /* Catatan Penting */
-        .notes {
-            width: 45%;
-            font-size: 0.8em;
-            color: #7f8c8d;
-        }
-
-        .notes h4 {
-            margin: 0 0 10px;
-            color: #4a6572;
-        }
-
-        /*
-         * Gaya baru yang disatukan untuk bagian total
-         * Mengatur layout dan font agar konsisten antara nota dan invoice
-         */
-        .total-section {
-            width: 45%;
-            /* Flexbox untuk mengatur item rata kanan dan jaraknya */
-            display: flex;
-            flex-direction: column;
-            gap: 5px; /* Jarak antar baris total */
-            text-align: right; /* Rata kanan semua konten dalam total-section */
-        }
-        
-        .total-row {
-            display: flex;
-            justify-content: flex-end; /* Semua konten di baris rata kanan */
-            align-items: center;
-            font-weight: bold;
-        }
-
-        /* Gaya untuk label (misal: "Total", "DP", "Sisa") */
-        .total-row .label {
-            font-size: 1.1em;
-            color: #34495e;
-            width: auto;
-            margin-right: 10px; /* Jarak antara label dan jumlah */
-        }
-        
-        /* Gaya untuk jumlah harga (misal: "Rp 100.000") */
-        .total-row .amount {
-            font-size: 1.1em; 
-            color: #2980b9; 
-            font-weight: bold;
-            width: 120px; /* Lebar tetap untuk amount agar rata kanan */
-            text-align: right; 
-            outline: none; 
-            padding: 2px 5px; 
-            border-radius: 3px;
-        }
-        
-        .total-row .amount:focus {
-            background-color: #f0f4f7;
-        }
-        
-        /* Gaya khusus untuk baris "Sisa" pada invoice */
-        .total-row.sisa-row .label {
-            font-size: 1.1em; 
-            color: #2c3e50; 
-        }
-        .total-row.sisa-row .amount {
-            font-size: 1.1em; 
-            color: #c0392b; 
-        }
-
-        /*
-         * Bagian Tanda Tangan
-         * Mengatur posisi tanda tangan agar rata kiri.
-         * Menambahkan kontainer pembungkus baru untuk menengahkan teks di dalamnya.
-         */
-        .signature {
-            /* Mengubah rata tengah ke rata kiri */
-            text-align: left;
-            margin-top: 25px;
-            color: #4a6572;
-            /* Membuat teks tanda tangan lebih jelas */
-            font-weight: bold;
-            color: #2c3e50;
-        }
-        
-        /* Menambahkan kelas baru untuk menengahkan teks di dalam kontainer */
-        .signature-content-wrapper {
-            display: inline-block; /* Membuat kontainer menyesuaikan lebar konten */
-            text-align: center; /* Menengahkan teks di dalam kontainer */
-            position: relative;
-        }
-        
-        /* Gaya untuk Watermark Tanda Tangan Menggunakan Tag Gambar */
-        .signature-watermark {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 190px;
-            height: 190px;
-            opacity: 100;
-            z-index: 0;
-            pointer-events: none; /* Mencegah gambar dari interaksi mouse */
-        }
-        
-        /* Memastikan teks tanda tangan berada di atas gambar */
-        .signature-content-wrapper p {
-            position: relative;
-            z-index: 1;
-            margin-bottom: 30px;
-        }
-
-        /*
-         * Catatan invoice tambahan
-         */
-        .notes-invoice {
-            width: 45%;
-            font-size: 0.8em;
-            color: #7f8c8d;
-        }
-
-        .notes-invoice h4 {
-            margin: 0 0 10px;
-            color: #4a6572;
-        }
-
-        /*
-         * Kontrol Input Floating
-         * Mengatur styling untuk panel input, tombol, dan posisinya.
-         */
-        .input-controls {
-            position: sticky;
-            top: 10px;
-            background: #fdfefe;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            z-index: 1000;
-            max-height: calc(100vh - 40px);
-            width: 250px;
-        }
-
-        /* Layout flex untuk tombol switcher di dalam panel input */
-        .input-controls .switcher-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-
-        .input-controls .switcher-buttons button {
-            flex-grow: 1;
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-weight: bold;
-            background-color: #95a5a6;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .input-controls .switcher-buttons button.active {
-            background-color: #3498db;
-        }
-        
-        .input-controls h3 {
-            margin: 0 0 8px;
-            font-size: 1.1em;
-            color: #2c3e50;
-        }
-
-        .input-controls input {
-            width: 100%;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #bdc3c7;
+        /* Reset CSS dasar */
+        * {
             box-sizing: border-box;
-            font-size: 0.9em;
-            transition: all 0.3s ease;
-            color: #34495e;
+            margin: 0;
+            padding: 0;
         }
 
-        .input-controls input::placeholder {
-            color: #95a5a6;
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 15px;
+            overflow-x: hidden;
+            /* Gradien latar belakang yang lebih dramatis */
+            background-image: radial-gradient(circle at top, var(--bg-light) 0%, var(--bg-dark) 85%);
         }
-
-        .input-controls button {
+        
+        /* Memberikan efek pseudo-elemen untuk latar belakang tambahan yang bergerak */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            padding: 10px;
-            border-radius: 6px;
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(106, 121, 247, 0.05), rgba(142, 96, 250, 0.05));
+            z-index: -1;
+            animation: moveBackground 20s infinite alternate ease-in-out;
+            opacity: 0.5;
+        }
+
+        @keyframes moveBackground {
+            from { transform: translate(0, 0); }
+            to { transform: translate(50px, 50px); }
+        }
+
+        /* ==================== */
+        /* Struktur Halaman Utama */
+        /* ==================== */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+            padding: 40px;
+            border-radius: 20px;
+            background: var(--card-bg);
+            backdrop-filter: blur(15px); /* Efek glassmorphism */
+            border: 1px solid var(--card-border);
+            box-shadow: var(--shadow-outer);
+            animation: fadeIn 1s ease-out;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        header {
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-family: var(--font-heading);
+            font-size: 3em;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--accent-color-1), var(--accent-color-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+            text-shadow: 0 0 15px rgba(106, 121, 247, 0.5); /* Glow pada judul */
+        }
+
+        header h1 .emoji {
             font-size: 0.9em;
+            margin-right: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ==================== */
+        /* Kontrol Input & Filter */
+        /* ==================== */
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        #search-input {
+            width: 100%;
+            max-width: 600px;
+            padding: 16px 24px;
+            border: 1px solid var(--card-border);
+            border-radius: 50px;
+            background: var(--bg-light);
+            color: var(--text-primary);
+            font-size: 1em;
+            outline: none;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+            box-shadow: var(--shadow-inner);
+        }
+
+        #search-input::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.8;
+        }
+
+        #search-input:focus {
+            border-color: var(--accent-color-1);
+            box-shadow: 0 0 20px rgba(106, 121, 247, 0.6);
+        }
+
+        .category-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .category-btn {
+            padding: 12px 24px;
+            border: 1px solid var(--card-border);
+            border-radius: 50px;
+            font-family: var(--font-main);
+            font-weight: 500;
+            font-size: 0.9em;
+            background-color: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.05); /* Latar belakang tombol semi-transparan */
+            backdrop-filter: blur(5px);
         }
-
-        /* Efek Hover untuk tombol */
-        .input-controls button:hover {
-            background-color: #217dbb;
+        
+        .category-btn.active, .category-btn:hover {
+            background: linear-gradient(45deg, var(--accent-color-1), var(--accent-color-2));
+            color: var(--bg-dark);
+            border-color: transparent;
+            box-shadow: 0 4px 20px rgba(106, 121, 247, 0.4);
             transform: translateY(-2px);
         }
 
-        /* Warna khusus untuk tombol delete di tabel */
-        .btn-delete {
-            background-color: #e74c3c !important;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: background-color 0.3s;
-            width: 60px; /* Menyamakan lebar tombol delete */
+        /* ==================== */
+        /* Grid & Kartu Link */
+        /* ==================== */
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
-        .btn-delete:hover {
-            background-color: #c0392b !important;
+        .link-card {
+            background: rgba(255, 255, 255, 0.03); /* Latar belakang kartu yang sangat transparan */
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 25px;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease, background 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Efek hover 3D dan background */
+        .link-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), var(--accent-glow);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .link-card .icon-container {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: var(--accent-color-1);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        
+        .link-card:hover .icon-container {
+            color: var(--accent-color-2);
+            transform: rotate(5deg) scale(1.1);
         }
 
-        /* Gaya untuk tombol tambah di dalam tabel */
-        .btn-add-row {
-            background-color: #3498db; /* Warna biru seperti tombol floating */
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: background-color 0.3s;
-            width: 60px; /* Menyamakan lebar tombol tambah */
+        .link-card h2 {
+            font-family: var(--font-heading);
+            font-size: 1.5em;
+            margin: 0 0 8px;
+            color: var(--text-primary);
+            font-weight: 600;
         }
 
-        .btn-add-row:hover {
-            background-color: #217dbb;
+        .link-card p {
+            font-size: 0.95em;
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.5;
+        }
+        
+        #empty-message {
+            color: var(--text-secondary);
+            font-size: 1.2em;
+            margin-top: 50px;
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+            opacity: 0.7;
         }
 
-        .btn-reset {
-            background-color: #f39c12 !important;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9em;
-            font-weight: bold;
-            transition: background-color 0.3s;
+        /* ==================== */
+        /* Footer */
+        /* ==================== */
+        footer {
+            margin-top: 60px;
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        footer:hover {
+            opacity: 1;
+        }
+        
+        footer a {
+            color: var(--accent-color-1);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
         }
 
-        .btn-reset:hover {
-            background-color: #e67e22 !important;
-            transform: translateY(-2px);
+        footer a:hover {
+            color: var(--accent-color-2);
+            text-decoration: underline;
         }
 
-        /*
-         * REVISI UTAMA: Media Query untuk Cetak
-         * Memastikan tampilan cetak tidak berubah dari tampilan di layar,
-         * serta mempertahankan watermark dan nomor halaman.
-         */
-        @media print {
-            /* Sembunyikan elemen kontrol saat mencetak */
-            .print-hide {
-                display: none !important;
-            }
-
-            /* Sembunyikan panel input saat mencetak */
-            .input-controls {
-                display: none !important;
-            }
-
-            /* Atur ulang gaya body dan kontainer agar sesuai dengan tampilan layar */
-            body {
-                background: #fff;
-                padding: 0;
-                margin: 0;
-                display: block;
-            }
-
-            .document-container {
-                box-shadow: none;
-                border: none;
-                padding: 40px; /* Pertahankan padding asli */
-                width: 800px; /* Pertahankan lebar asli */
-            }
-
-            /* Atur ulang lebar tabel agar tidak terpotong saat dicetak */
-            .table-container {
-                overflow-x: hidden; /* Pastikan scrollbar tidak muncul di cetakan */
-            }
-
-            table {
-                width: 100%;
-                table-layout: auto;
-            }
-
-            /* Gaya khusus untuk watermark cetak */
-            .watermark-print {
-                position: fixed;
-                top: 5px;
-                right: 20px;
-                left: auto;
-                font-size: 10px;
-                color: #888;
-                opacity: 0.9;
-                font-style: italic;
-                z-index: 9999;
-                display: block;
-                text-align: right;
-                -webkit-print-color-adjust: exact;
-                color-adjust: exact;
-            }
-
-            /* Pengaturan halaman cetak dan nomor halaman */
-            @page {
-                size: A4;
-                margin: 20mm;
-                @bottom-right {
-                    content: "Halaman " counter(page) " dari " counter(pages);
-                    font-size: 10px;
-                    color: #888;
-                    font-style: italic;
-                }
-            }
+        /* ==================== */
+        /* Media Queries (Responsif) */
+        /* ==================== */
+        @media (max-width: 768px) {
+            .container { padding: 30px 15px; }
+            header h1 { font-size: 2.5em; }
+            header p { font-size: 1em; }
+            .link-grid { grid-template-columns: 1fr; }
         }
-
-        /*
-         * Media Query untuk Tampilan Responsif
-         * Mengatur tata letak untuk layar yang lebih kecil.
-         */
-        @media (max-width: 1200px) {
-            body {
-                flex-direction: column;
-                align-items: center;
-            }
-            .document-container {
-                width: 95%;
-                padding: 20px;
-            }
-            .input-controls {
-                position: relative;
-                width: 95%;
-                margin-bottom: 20px;
-                max-height: none;
-            }
-            .info-section {
-                grid-template-columns: 1fr;
-            }
-            .summary-section {
-                flex-direction: column;
-                gap: 20px;
-            }
-            .notes, .total-section, .notes-invoice {
-                width: 100%;
-            }
+        @media (max-width: 480px) {
+            header h1 { font-size: 2em; }
+            header p { font-size: 0.9em; }
+            .category-btn { font-size: 0.8em; padding: 10px 20px; }
+            .link-card h2 { font-size: 1.3em; }
+            .link-card p { font-size: 0.85em; }
         }
     </style>
 </head>
 <body>
 
-  <div class="document-container hidden" id="nota-container">
-    <div class="watermark-print" id="watermark-nota"></div>
-    <div class="header">
-      <div class="header-left">
-        <img src="logo.svg" class="logo" alt="Logo Tewe Creative">
-        <div class="company-info">
-          <h1>Tewe Creative</h1>
-          <p>Jagonya Komputer, Jagonya Cetak!</p>
+    <div class="container">
+        <header>
+            <h1><span class="emoji">✨</span> Galeri Tools Canggih</h1>
+            <p>Kumpulan link yang dikurasi khusus untuk para profesional kreatif, developer, dan siapa pun yang haus akan inovasi. Temukan tools, inspirasi, dan komunitas terbaik di satu tempat.</p>
+        </header>
+
+        <div class="controls">
+            <input type="text" id="search-input" placeholder="Cari link..." aria-label="Cari link">
+            <div class="category-buttons" id="category-buttons">
+            </div>
         </div>
-      </div>
-      <div class="header-right">
-        <h2>E-NOTA</h2>
-        <p id="noNota" contenteditable="true">NO: -</p>
-      </div>
-    </div>
-    <div class="info-section">
-      <div class="info-item">
-        <label>Tanggal</label>
-        <span class="colon">:</span>
-        <span id="tanggalNota" contenteditable="true">-</span>
-      </div>
-      <div class="info-item">
-        <label>Kepada Yth.</label>
-        <span class="colon">:</span>
-        <span id="kepadaNota" contenteditable="true">-</span>
-      </div>
-    </div>
-    <div class="table-container">
-      <table id="tabelBarangNota">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Banyaknya</th>
-            <th>Nama Barang</th>
-            <th>Harga</th>
-            <th>Jumlah</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </div>
-    <div class="summary-section">
-      <div class="notes">
-        <h4>Catatan Penting:</h4>
-        <p>Barang yang sudah dibeli tidak dapat ditukar atau dikembalikan.</p>
-        <p>Terima kasih telah berbelanja di toko kami.</p>
-      </div>
-      <div class="total-section">
-        <div class="total-row">
-            <span class="label">TOTAL (LUNAS)</span>
-            <span class="amount" id="totalHargaNota">Rp 0</span>
+
+        <div class="link-grid" id="linkContainer">
         </div>
-      </div>
-    </div>
-    <div class="signature">
-        <div class="signature-content-wrapper">
-          <img src="ttd.svg" alt="Tanda Tangan" class="signature-watermark">
-          <p>Hormat Kami,</p>
-          <p>( Tewe Creative )</p>
+
+        <div id="empty-message">
+            <p>😢 Maaf, tidak ada link yang ditemukan.</p>
         </div>
+
+        <footer>
+            Dibuat dengan ❤️ oleh <a href="#" target="_blank">[Nama Anda]</a> | &copy; <span id="current-year"></span>
+        </footer>
     </div>
-  </div>
 
-  <div class="document-container" id="invoice-container">
-    <div class="watermark-print" id="watermark-invoice"></div>
-    <div class="header">
-      <div class="header-left">
-        <img src="logo.svg" class="logo" alt="Logo Tewe Creative">
-        <div class="company-info">
-          <h1>Tewe Creative</h1>
-          <p>Jagonya Komputer, Jagonya Cetak!</p>
-        </div>
-      </div>
-      <div class="header-right">
-        <h2>E-INVOICE</h2>
-        <p id="noInvoice" contenteditable="true">NO: -</p>
-      </div>
-    </div>
-    <div class="info-section">
-      <div class="info-item">
-        <label>Tanggal</label>
-        <span class="colon">:</span>
-        <span id="tanggalInvoice" contenteditable="true">-</span>
-      </div>
-      <div class="info-item">
-        <label>Kepada Yth.</label>
-        <span class="colon">:</span>
-        <span id="kepadaInvoice" contenteditable="true">-</span>
-      </div>
-    </div>
-    <div class="table-container">
-      <table id="tabelBarangInvoice">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Banyaknya</th>
-            <th>Nama Barang</th>
-            <th>Harga</th>
-            <th>Jumlah</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </div>
-    <div class="summary-section">
-      <div class="notes-invoice">
-        <h4>Catatan Penting:</h4>
-        <p>Barang yang sudah dibeli tidak dapat ditukar atau dikembalikan.</p>
-        <p>Invoice ini dibuat secara otomatis dan tidak memerlukan tanda tangan basah. </p>
-		<p>Pembayaran dapat dilakukan via transfer.</p>
-        <p>Terima kasih telah berbelanja di toko kami.</p>
-      </div>
-      <div class="total-section">
-        <div class="total-row">
-            <span class="label">Total</span>
-            <span class="amount" id="totalHargaInvoice" contenteditable="false">Rp 0</span> </div>
-        <div class="total-row">
-            <span class="label">Uang Muka</span>
-            <span class="amount" id="dpHarga" contenteditable="true" oninput="formatAndCalculate(this)">Rp 0</span> </div>
-        <div class="total-row sisa-row">
-            <span class="label">Sisa</span>
-            <span class="amount" id="sisaHarga" contenteditable="false">Rp 0</span> </div>
-      </div>
-    </div>
-    <div class="signature">
-        <div class="signature-content-wrapper">
-          <img src="ttd.svg" alt="Tanda Tangan" class="signature-watermark">
-          <p>Hormat Kami,</p>
-          <p>( Tewe Creative )</p>
-        </div>
-    </div>
-  </div>
+    <script>
+        // ====================
+        // JavaScript Fungsionalitas
+        // ====================
 
-  <div class="input-controls" id="input-controls">
-    <div class="switcher-buttons">
-      <button id="btn-invoice" class="active">Invoice</button>
-      <button id="btn-nota">Nota</button>
-    </div>
-    <hr>
-    <button id="printBtn" onclick="printDocument()">Print Invoice</button>
-    <button class="btn-reset" onclick="resetData()">Reset Data</button>
-  </div>
+        // Data link utama
+        const links = [
+            // Kategori: AI Generatif & Kreatif
+            { name: 'Midjourney', description: 'AI generatif terdepan untuk menciptakan gambar dan ilustrasi yang menakjubkan.', url: 'https://www.midjourney.com/', icon: 'fas fa-gem', category: 'AI Generatif & Kreatif' },
+            { name: 'DALL-E 3', description: 'Model AI canggih dari OpenAI untuk menciptakan gambar dari deskripsi teks.', url: 'https://openai.com/dall-e-3', icon: 'fas fa-image', category: 'AI Generatif & Kreatif' },
+            { name: 'Stable Diffusion', description: 'Model AI open-source untuk menghasilkan gambar yang realistis dan artistik.', url: 'https://stablediffusionweb.com/', icon: 'fas fa-lightbulb', category: 'AI Generatif & Kreatif' },
+            { name: 'Runway ML', description: 'Tools AI untuk pengeditan video, text-to-video, dan aset kreatif lainnya.', url: 'https://runwayml.com/', icon: 'fas fa-video', category: 'AI Generatif & Kreatif' },
+            { name: 'Synthesia', description: 'Platform AI untuk membuat video dari teks dengan avatar realistis.', url: 'https://www.synthesia.io/', icon: 'fas fa-chalkboard-teacher', category: 'AI Generatif & Kreatif' },
+            { name: 'ElevenLabs', description: 'AI voice generator untuk mengubah teks menjadi suara berkualitas tinggi dan natural.', url: 'https://elevenlabs.io/', icon: 'fas fa-microphone-alt', category: 'AI Generatif & Kreatif' },
+            { name: 'Adobe Firefly', description: 'AI generatif dari Adobe untuk menciptakan efek teks dan gambar.', url: 'https://www.adobe.com/sensei/generative-ai/firefly.html', icon: 'fas fa-magic', category: 'AI Generatif & Kreatif' },
+            { name: 'Leonardo.AI', description: 'Platform AI generatif untuk membuat visual game assets.', url: 'https://leonardo.ai/', icon: 'fas fa-hat-wizard', category: 'AI Generatif & Kreatif' },
+            { name: 'Copilot', description: 'Asisten coding bertenaga AI yang membantu menulis kode lebih cepat.', url: 'https://github.com/features/copilot', icon: 'fas fa-brain', category: 'AI Generatif & Kreatif' },
+            { name: 'Synthetik', description: 'Platform AI generatif untuk pengeditan foto yang cerdas dan artistik.', url: 'https://synthetik.com/', icon: 'fas fa-palette', category: 'AI Generatif & Kreatif' },
+            { name: 'Jasper AI', description: 'Asisten penulisan AI untuk blog, media sosial, dan konten lainnya.', url: 'https://www.jasper.ai/', icon: 'fas fa-feather-alt', category: 'AI Generatif & Kreatif' },
+            { name: 'Descript', description: 'Editor video all-in-one yang menggunakan AI untuk transkripsi dan pengeditan teks.', url: 'https://www.descript.com/', icon: 'fas fa-film', category: 'AI Generatif & Kreatif' },
+            { name: 'Otter.ai', description: 'Asisten transkripsi rapat bertenaga AI secara real-time.', url: 'https://otter.ai/', icon: 'fas fa-microphone', category: 'AI Generatif & Kreatif' },
+            { name: 'Murf AI', description: 'Pembuat suara AI yang realistis untuk voiceover dan narasi.', url: 'https://murf.ai/', icon: 'fas fa-volume-up', category: 'AI Generatif & Kreatif' },
+            { name: 'Lexica', description: 'Mesin pencari gambar dan prompt AI untuk Stable Diffusion dan Midjourney.', url: 'https://lexica.art/', icon: 'fas fa-search-plus', category: 'AI Generatif & Kreatif' },
 
-  <script>
-    // Variabel global untuk melacak mode saat ini (nota atau invoice)
-    let currentMode = 'invoice';
+            // Kategori: Tools Developer
+            { name: 'Vercel', description: 'Platform untuk deployment web frontend yang cepat dan mudah.', url: 'https://vercel.com/', icon: 'fas fa-rocket', category: 'Tools Developer' },
+            { name: 'Netlify', description: 'Platform untuk membangun, deploy, dan mengelola situs web.', url: 'https://www.netlify.com/', icon: 'fas fa-cloud', category: 'Tools Developer' },
+            { name: 'CodePen', description: 'Editor kode online untuk front-end developer dan desainer.', url: 'https://codepen.io/', icon: 'fab fa-codepen', category: 'Tools Developer' },
+            { name: 'Postman', description: 'API platform untuk membangun dan menggunakan API.', url: 'https://www.postman.com/', icon: 'fas fa-server', category: 'Tools Developer' },
+            { name: 'GitHub', description: 'Pusat kolaborasi kode sumber terbuka & manajemen proyek.', url: 'https://github.com/', icon: 'fab fa-github', category: 'Tools Developer' },
+            { name: 'GitLab', description: 'Platform DevOps lengkap untuk siklus hidup pengembangan perangkat lunak.', url: 'https://gitlab.com/', icon: 'fab fa-gitlab', category: 'Tools Developer' },
+            { name: 'StackBlitz', description: 'Lingkungan pengembangan web online untuk membuat, mengedit, dan deploy proyek.', url: 'https://stackblitz.com/', icon: 'fas fa-laptop-code', category: 'Tools Developer' },
+            { name: 'Railway', description: 'Platform infrastruktur yang mudah digunakan untuk mendeploy aplikasi.', url: 'https://railway.app/', icon: 'fas fa-train', category: 'Tools Developer' },
+            { name: 'Sentry', description: 'Pemantauan kesalahan real-time untuk aplikasi modern.', url: 'https://sentry.io/', icon: 'fas fa-bug', category: 'Tools Developer' },
+            { name: 'Expo', description: 'Framework dan platform untuk membangun aplikasi universal React Native.', url: 'https://expo.dev/', icon: 'fas fa-mobile-alt', category: 'Tools Developer' },
+            { name: 'Flutter', description: 'UI toolkit dari Google untuk membangun aplikasi yang dikompilasi secara native.', url: 'https://flutter.dev/', icon: 'fas fa-mobile', category: 'Tools Developer' },
+            { name: 'Dart', description: 'Bahasa pemrograman yang dioptimalkan untuk UI, digunakan oleh Flutter.', url: 'https://dart.dev/', icon: 'fas fa-code', category: 'Tools Developer' },
+            { name: 'TurboRepo', description: 'Build system untuk monorepo JavaScript/TypeScript.', url: 'https://turborepo.org/', icon: 'fas fa-feather-alt', category: 'Tools Developer' },
+            { name: 'tRPC', description: 'End-to-end typesafe API untuk aplikasi TypeScript.', url: 'https://trpc.io/', icon: 'fas fa-network-wired', category: 'Tools Developer' },
+            { name: 'Zustand', description: 'Small, fast and scalable state-management solution.', url: 'https://zustand-demo.pmnd.rs/', icon: 'fas fa-cubes', category: 'Tools Developer' },
+            { name: 'Radix UI', description: 'Komponen UI tanpa gaya untuk membangun sistem desain.', url: 'https://www.radix-ui.com/', icon: 'fas fa-layer-group', category: 'Tools Developer' },
+            { name: 'SWR', description: 'React Hooks for Data Fetching.', url: 'https://swr.vercel.app/', icon: 'fas fa-sync-alt', category: 'Tools Developer' },
+            { name: 'Prisma', description: 'ORM (Object-Relational Mapping) generasi berikutnya.', url: 'https://www.prisma.io/', icon: 'fas fa-database', category: 'Tools Developer' },
+            { name: 'Supabase', description: 'Alternatif open-source untuk Firebase.', url: 'https://supabase.com/', icon: 'fas fa-leaf', category: 'Tools Developer' },
+            { name: 'Clerk', description: 'Authentication and user management for Next.js, React, etc.', url: 'https://clerk.com/', icon: 'fas fa-key', category: 'Tools Developer' },
+            { name: 'React', description: 'Library JavaScript untuk membangun antarmuka pengguna interaktif.', url: 'https://react.dev/', icon: 'fab fa-react', category: 'Tools Developer' },
+            { name: 'Next.js', description: 'Framework React yang kuat untuk aplikasi web full-stack.', url: 'https://nextjs.org/', icon: 'fas fa-bolt', category: 'Tools Developer' },
+            { name: 'Vue.js', description: 'Framework JavaScript yang progresif untuk membangun UI.', url: 'https://vuejs.org/', icon: 'fab fa-vuejs', category: 'Tools Developer' },
+            { name: 'Svelte', description: 'Compiler yang revolusioner untuk membangun antarmuka pengguna.', url: 'https://svelte.dev/', icon: 'fas fa-leaf', category: 'Tools Developer' },
+            { name: 'Tailwind CSS', description: 'Framework CSS utilitas-first untuk membangun desain kustom dengan cepat.', url: 'https://tailwindcss.com/', icon: 'fab fa-css3-alt', category: 'Tools Developer' },
+            { name: 'PlanetScale', description: 'Database MySQL tanpa server dengan penskalaan tak terbatas.', url: 'https://planetscale.com/', icon: 'fas fa-database', category: 'Tools Developer' },
+            { name: 'Drizzle ORM', description: 'ORM tanpa server yang ringan dan modern untuk TypeScript.', url: 'https://orm.drizzle.team/', icon: 'fas fa-cubes', category: 'Tools Developer' },
+            { name: 'Vite', description: 'Frontend build tool yang sangat cepat.', url: 'https://vitejs.dev/', icon: 'fas fa-rocket', category: 'Tools Developer' },
+            { name: 'Storybook', description: 'Lingkungan pengembangan UI untuk komponen terisolasi.', url: 'https://storybook.js.org/', icon: 'fas fa-book', category: 'Tools Developer' },
+            { name: 'Bun', description: 'JavaScript runtime yang super cepat, bundler, dan package manager.', url: 'https://bun.sh/', icon: 'fas fa-rabbit', category: 'Tools Developer' },
+            { name: 'TypeScript', description: 'Superset JavaScript yang menambahkan pengetikan statis.', url: 'https://www.typescriptlang.org/', icon: 'fas fa-laptop-code', category: 'Tools Developer' },
+            { name: 'GraphQL', description: 'Bahasa query untuk API dan runtime untuk memenuhi query tersebut dengan data yang ada.', url: 'https://graphql.org/', icon: 'fas fa-code-branch', category: 'Tools Developer' },
+            { name: 'Sanity', description: 'Platform konten terstruktur untuk mengelola data digital Anda.', url: 'https://www.sanity.io/', icon: 'fas fa-pencil-alt', category: 'Tools Developer' },
+            { name: 'Contentful', description: 'API konten yang dapat disesuaikan untuk mengelola konten di mana saja.', url: 'https://www.contentful.com/', icon: 'fas fa-feather-alt', category: 'Tools Developer' },
+            { name: 'Astro', description: 'Framework web modern untuk situs web cepat yang berfokus pada konten.', url: 'https://astro.build/', icon: 'fas fa-star', category: 'Tools Developer' },
+            { name: 'Qwik', description: 'Framework web yang dapat di-resume untuk interaktivitas instan.', url: 'https://qwik.builder.io/', icon: 'fas fa-bolt', category: 'Tools Developer' },
+            { name: 'Remix', description: 'Framework web yang berfokus pada web standards.', url: 'https://remix.run/', icon: 'fas fa-running', category: 'Tools Developer' },
+            { name: 'SolidJS', description: 'Library JavaScript untuk membangun UI yang cepat dan reaktif.', url: 'https://www.solidjs.com/', icon: 'fas fa-heart', category: 'Tools Developer' },
+            { name: 'Turbopack', description: 'Penerus bundler Webpack yang lebih cepat dan efisien.', url: 'https://turbopack.build/', icon: 'fas fa-bolt', category: 'Tools Developer' },
+            { name: 'Framer Motion', description: 'Library animasi yang kuat untuk React.', url: 'https://www.framer.com/motion/', icon: 'fas fa-wind', category: 'Tools Developer' },
+            { name: 'GSAP', description: 'GreenSock Animation Platform. Library animasi web yang profesional.', url: 'https://greensock.com/gsap/', icon: 'fas fa-magic', category: 'Tools Developer' },
+            { name: 'Sass', description: 'Preprocessor CSS yang menambahkan fitur-fitur seperti variabel dan nesting.', url: 'https://sass-lang.com/', icon: 'fab fa-sass', category: 'Tools Developer' },
+            { name: 'Webpack', description: 'Bundler modul JavaScript statis untuk aplikasi web modern.', url: 'https://webpack.js.org/', icon: 'fas fa-cubes', category: 'Tools Developer' },
+            { name: 'ESLint', description: 'Alat linting JavaScript untuk menemukan masalah dalam kode.', url: 'https://eslint.org/', icon: 'fas fa-code', category: 'Tools Developer' },
+            { name: 'Prettier', description: 'Formatter kode yang opinif untuk kode JavaScript, HTML, dan CSS.', url: 'https://prettier.io/', icon: 'fas fa-paint-roller', category: 'Tools Developer' },
+            { name: 'Jest', description: 'Framework testing JavaScript yang menyenangkan.', url: 'https://jestjs.io/', icon: 'fas fa-flask', category: 'Tools Developer' },
+            { name: 'Cypress', description: 'Alat pengujian end-to-end yang cepat dan andal untuk web.', url: 'https://www.cypress.io/', icon: 'fas fa-bug', category: 'Tools Developer' },
+            { name: 'Nx', description: 'Build system yang monorepo untuk TypeScript dan JavaScript.', url: 'https://nx.dev/', icon: 'fas fa-bolt', category: 'Tools Developer' },
+            { name: 'Lerna', description: 'Alat untuk mengelola repositori multi-paket dengan JavaScript dan TypeScript.', url: 'https://lerna.js.org/', icon: 'fas fa-sitemap', category: 'Tools Developer' },
+            { name: 'GitHub Actions', description: 'Otomatisasi alur kerja CI/CD langsung di repositori GitHub Anda.', url: 'https://github.com/features/actions', icon: 'fas fa-robot', category: 'Tools Developer' },
+            { name: 'T3 Stack', description: 'Full-stack framework untuk membuat aplikasi web dengan Next.js, tRPC, dan Tailwind CSS.', url: 'https://create.t3.gg/', icon: 'fas fa-stack-overflow', category: 'Tools Developer' },
+            { name: 'Shadcn/ui', description: 'Kumpulan komponen UI yang dapat disalin dan ditempel untuk proyek React.', url: 'https://ui.shadcn.com/', icon: 'fas fa-puzzle-piece', category: 'Tools Developer' },
+            { name: 'Headless UI', description: 'Komponen UI tanpa gaya yang sepenuhnya dapat diakses untuk React dan Vue.', url: 'https://headlessui.dev/', icon: 'fas fa-ghost', category: 'Tools Developer' },
+            { name: 'Faker.js', description: 'Library untuk menghasilkan data dummy realistis untuk pengembangan.', url: 'https://fakerjs.dev/', icon: 'fas fa-dice-d20', category: 'Tools Developer' },
+            { name: 'Typeform', description: 'Platform untuk membuat formulir, survei, dan kuis yang interaktif.', url: 'https://www.typeform.com/', icon: 'fas fa-stream', category: 'Tools Developer' },
+            { name: 'Loom', description: 'Tools untuk merekam layar dan pesan video dengan cepat.', url: 'https://www.loom.com/', icon: 'fas fa-video', category: 'Tools Developer' },
+            { name: 'Unsplash', description: 'Koleksi foto stok gratis berkualitas tinggi yang dapat digunakan secara bebas.', url: 'https://unsplash.com/', icon: 'fas fa-camera', category: 'Tools Developer' },
+            { name: 'Mixkit', description: 'Koleksi video stok, musik, dan efek suara gratis.', url: 'https://mixkit.com/', icon: 'fas fa-video', category: 'Tools Developer' },
 
-    // Mendapatkan elemen DOM yang dibutuhkan
-    const notaContainer = document.getElementById('nota-container');
-    const invoiceContainer = document.getElementById('invoice-container');
-    const printBtn = document.getElementById('printBtn');
-    const btnNota = document.getElementById('btn-nota');
-    const btnInvoice = document.getElementById('btn-invoice');
+            // Kategori: Desain & Aset Kreatif
+            { name: 'Figma', description: 'Tools kolaboratif untuk desain antarmuka dan prototyping.', url: 'https://www.figma.com/', icon: 'fab fa-figma', category: 'Desain & Aset Kreatif' },
+            { name: 'Framer', description: 'Tools interaktif untuk mendesain dan mempublikasikan situs web modern.', url: 'https://www.framer.com/', icon: 'fas fa-drafting-compass', category: 'Desain & Aset Kreatif' },
+            { name: 'Webflow', description: 'Platform tanpa kode untuk merancang dan membangun situs web responsif.', url: 'https://webflow.com/', icon: 'fas fa-globe', category: 'Desain & Aset Kreatif' },
+            { name: 'Miro', description: 'Platform papan tulis digital untuk kolaborasi tim dan brainstorming.', url: 'https://miro.com/', icon: 'fas fa-pencil-ruler', category: 'Desain & Aset Kreatif' },
+            { name: 'LottieFiles', description: 'Koleksi animasi ringan untuk web, iOS, Android, dan React Native.', url: 'https://lottiefiles.com/', icon: 'fas fa-ghost', category: 'Desain & Aset Kreatif' },
+            { name: 'Awwwards', description: 'Inspirasi desain website terbaik & inovatif dari seluruh dunia.', url: 'https://www.awwwards.com/', icon: 'fas fa-medal', category: 'Desain & Aset Kreatif' },
+            { name: 'Dribbble', description: 'Platform utama untuk desainer menampilkan & menemukan karya.', url: 'https://dribbble.com/', icon: 'fas fa-basketball-ball', category: 'Desain & Aset Kreatif' },
+            { name: 'Behance', description: 'Menjelajahi portofolio & karya kreatif dari seluruh dunia.', url: 'https://www.behance.net/', icon: 'fab fa-behance', category: 'Desain & Aset Kreatif' },
+            { name: 'Canva', description: 'Platform desain grafis online yang mudah digunakan.', url: 'https://www.canva.com/', icon: 'fas fa-palette', category: 'Desain & Aset Kreatif' },
+            { name: 'Coolors', description: 'Generator palet warna yang super cepat.', url: 'https://coolors.co/', icon: 'fas fa-fill-drip', category: 'Desain & Aset Kreatif' },
+            { name: 'Heroicons', description: 'Kumpulan ikon vektor gratis dan open-source oleh Tailwind Labs.', url: 'https://heroicons.com/', icon: 'fas fa-star', category: 'Desain & Aset Kreatif' },
+            { name: 'Pexels', description: 'Foto dan video stok gratis berkualitas tinggi.', url: 'https://www.pexels.com/', icon: 'fas fa-image', category: 'Desain & Aset Kreatif' },
+            { name: 'Undraw', description: 'Koleksi ilustrasi open-source yang bisa disesuaikan dengan warna.', url: 'https://undraw.co/illustrations', icon: 'fas fa-vector-square', category: 'Desain & Aset Kreatif' },
+            { name: 'Spline', description: 'Alat desain 3D online yang mudah digunakan untuk web.', url: 'https://spline.design/', icon: 'fas fa-cube', category: 'Desain & Aset Kreatif' },
+            { name: 'Blender', description: 'Software 3D open-source dan gratis untuk pemodelan, animasi, dan rendering.', url: 'https://www.blender.org/', icon: 'fas fa-dice-d6', category: 'Desain & Aset Kreatif' },
+            { name: 'Vectornator', description: 'Aplikasi desain grafis vektor yang powerful untuk iPad, iPhone, dan Mac.', url: 'https://www.vectornator.io/', icon: 'fas fa-pen-nib', category: 'Desain & Aset Kreatif' },
+            { name: 'Procreate', description: 'Aplikasi seni digital dan ilustrasi yang populer untuk iPad.', url: 'https://procreate.art/', icon: 'fas fa-paint-brush', category: 'Desain & Aset Kreatif' },
+            { name: 'UIJar', description: 'Galeri inspirasi desain UI yang dikurasi.', url: 'https://uijar.com/', icon: 'fas fa-shapes', category: 'Desain & Aset Kreatif' },
+            { name: 'Mobbin', description: 'Galeri screenshot desain aplikasi mobile.', url: 'https://mobbin.com/', icon: 'fas fa-mobile-alt', category: 'Desain & Aset Kreatif' },
+            { name: 'Fonts In Use', description: 'Arsip font yang digunakan di dunia nyata.', url: 'https://fontsinuse.com/', icon: 'fas fa-font', category: 'Desain & Aset Kreatif' },
 
-    // Fungsi untuk memformat harga ke format Rupiah (untuk input type text)
-    function formatHarga(inputElement) {
-      let value = inputElement.value.replace(/[^\d]/g, ""); // Hapus semua kecuali digit
-      if (value === "") {
-        inputElement.value = "Rp 0";
-        return;
-      }
-      let formatted = new Intl.NumberFormat("id-ID").format(value);
-      inputElement.value = "Rp " + formatted;
-    }
+            // Kategori: Sumber Daya & Komunitas
+            { name: 'freeCodeCamp', description: 'Belajar coding secara interaktif dengan proyek dan sertifikasi.', url: 'https://www.freecodecamp.org/', icon: 'fas fa-code', category: 'Sumber Daya & Komunitas' },
+            { name: 'MDN Web Docs', description: 'Dokumentasi standar web terlengkap dari Mozilla.', url: 'https://developer.mozilla.org/en-US/', icon: 'fas fa-book', category: 'Sumber Daya & Komunitas' },
+            { name: 'Stack Overflow', description: 'Platform tanya jawab bagi para programmer & developer.', url: 'https://stackoverflow.com/', icon: 'fab fa-stack-overflow', category: 'Sumber Daya & Komunitas' },
+            { name: 'Dev.to', description: 'Komunitas & blog bagi para developer untuk berbagi pengetahuan.', url: 'https://dev.to/', icon: 'fab fa-dev', category: 'Sumber Daya & Komunitas' },
+            { name: 'Hacker News', description: 'Berita dan diskusi seputar teknologi dan startup.', url: 'https://news.ycombinator.com/', icon: 'fab fa-hacker-news', category: 'Sumber Daya & Komunitas' },
+            { name: 'CSS-Tricks', description: 'Sumber daya lengkap tentang CSS, HTML, & JS.', url: 'https://css-tricks.com/', icon: 'fab fa-css3-alt', category: 'Sumber Daya & Komunitas' },
+            { name: 'Codrops', description: 'Artikel dan demo tentang teknik pengembangan web modern.', url: 'https://tympanus.net/codrops/', icon: 'fas fa-pencil-alt', category: 'Sumber Daya & Komunitas' },
+            { name: 'Smashing Magazine', description: 'Artikel & tutorial mendalam untuk web developer & desainer.', url: 'https://www.smashingmagazine.com/', icon: 'fas fa-book-open', category: 'Sumber Daya & Komunitas' },
+            { name: 'Product Hunt', description: 'Platform untuk menemukan dan berbagi produk teknologi terbaru.', url: 'https://www.producthunt.com/', icon: 'fas fa-box', category: 'Sumber Daya & Komunitas' },
+            { name: 'Indie Hackers', description: 'Komunitas para entrepreneur yang membangun bisnis online.', url: 'https://www.indiehackers.com/', icon: 'fas fa-handshake', category: 'Sumber Daya & Komunitas' },
+            { name: 'The Odin Project', description: 'Kurikulum open-source untuk belajar full-stack web development.', url: 'https://www.theodinproject.com/', icon: 'fas fa-shield-alt', category: 'Sumber Daya & Komunitas' },
+            { name: 'Frontend Mentor', description: 'Meningkatkan keterampilan front-end dengan membangun proyek nyata.', url: 'https://www.frontendmentor.io/', icon: 'fas fa-drafting-compass', category: 'Sumber Daya & Komunitas' },
+            { name: 'Hatchful', description: 'Pembuat logo online gratis dari Shopify.', url: 'https://hatchful.shopify.com/', icon: 'fas fa-star', category: 'Sumber Daya & Komunitas' },
 
-    // Fungsi untuk memformat teks harga (dari contenteditable) ke format Rupiah
-    function formatTextHarga(textValue) {
-        let value = textValue.replace(/[^\d]/g, ""); // Hapus semua kecuali digit
-        if (value === "") {
-            return "Rp 0";
-        }
-        let formatted = new Intl.NumberFormat("id-ID").format(value);
-        return "Rp " + formatted;
-    }
+            // Kategori: AI & ML / Data Science
+            { name: 'Hugging Face', description: 'Komunitas open-source untuk model, dataset, dan aplikasi AI.', url: 'https://huggingface.co/', icon: 'fas fa-brain', category: 'AI & ML / Data Science' },
+            { name: 'Kaggle', description: 'Platform kompetisi data science dan komunitas untuk belajar ML.', url: 'https://www.kaggle.com/', icon: 'fas fa-chart-line', category: 'AI & ML / Data Science' },
+            { name: 'TensorFlow', description: 'Platform end-to-end open-source untuk machine learning.', url: 'https://www.tensorflow.org/', icon: 'fas fa-microchip', category: 'AI & ML / Data Science' },
+            { name: 'PyTorch', description: 'Framework deep learning open-source yang fleksibel dari Facebook AI.', url: 'https://pytorch.org/', icon: 'fas fa-fire', category: 'AI & ML / Data Science' },
+            { name: 'Google AI', description: 'Penelitian dan tools AI dari Google.', url: 'https://ai.google/', icon: 'fab fa-google', category: 'AI & ML / Data Science' },
+            { name: 'OpenAI', description: 'Laboratorium penelitian AI di balik GPT dan DALL-E.', url: 'https://openai.com/', icon: 'fas fa-robot', category: 'AI & ML / Data Science' },
+            { name: 'DeepMind', description: 'Perusahaan riset AI yang berfokus pada kecerdasan umum.', url: 'https://deepmind.google/', icon: 'fas fa-robot', category: 'AI & ML / Data Science' },
+            { name: 'Weights & Biases', description: 'Platform untuk melacak, memvisualisasikan, dan mengelola eksperimen ML.', url: 'https://wandb.ai/', icon: 'fas fa-network-wired', category: 'AI & ML / Data Science' },
+            { name: 'Scikit-learn', description: 'Library machine learning yang powerful untuk Python.', url: 'https://scikit-learn.org/', icon: 'fas fa-brain', category: 'AI & ML / Data Science' },
+            { name: 'Anaconda', description: 'Platform open-source untuk ilmu data dan pembelajaran mesin.', url: 'https://www.anaconda.com/', icon: 'fab fa-python', category: 'AI & ML / Data Science' },
+            { name: 'ChatGPT', description: 'Model bahasa AI serbaguna dari OpenAI untuk teks, kode, dan ide kreatif.', url: 'https://chat.openai.com/', icon: 'fas fa-robot', category: 'AI & ML / Data Science' },
+            { name: 'Notion AI', description: 'Kecerdasan buatan terintegrasi untuk membantu menulis, meringkas, dan mengorganisir di Notion.', url: 'https://www.notion.so/', icon: 'fas fa-lightbulb', category: 'AI & ML / Data Science' },
+            { name: 'Perplexity AI', description: 'Mesin pencari bertenaga AI yang memberikan jawaban ringkas dan terverifikasi.', url: 'https://www.perplexity.ai/', icon: 'fas fa-search', category: 'AI & ML / Data Science' },
+            { name: 'Gamma', description: 'Alat AI untuk membuat presentasi dan dokumen dengan cepat.', url: 'https://gamma.app/', icon: 'fas fa-chart-pie', category: 'AI & ML / Data Science' },
+            { name: 'Tome', description: 'Platform storytelling AI-powered untuk membuat presentasi yang menarik.', url: 'https://tome.app/', icon: 'fas fa-pen-nib', category: 'AI & ML / Data Science' },
 
-    // Fungsi untuk menguraikan harga dari format Rupiah menjadi integer
-    function parseHarga(value) {
-      return parseInt(value.replace(/[^\d]/g, "")) || 0;
-    }
-    
-    // Fungsi baru untuk mendapatkan posisi kursor pada elemen contenteditable
-    function saveCaretPosition(element) {
-        const selection = window.getSelection();
-        if (selection.rangeCount > 0) {
-            const range = selection.getRangeAt(0);
-            const preCaretRange = range.cloneRange();
-            preCaretRange.selectNodeContents(element);
-            preCaretRange.setEnd(range.endContainer, range.endOffset);
-            return preCaretRange.toString().length;
-        }
-        return 0;
-    }
+            // Kategori: Cloud & DevOps
+            { name: 'Docker', description: 'Platform untuk membangun, shipping, dan menjalankan aplikasi dengan container.', url: 'https://www.docker.com/', icon: 'fab fa-docker', category: 'Cloud & DevOps' },
+            { name: 'Kubernetes', description: 'Sistem open-source untuk mengotomatisasi deployment, scaling, dan manajemen aplikasi yang di-container.', url: 'https://kubernetes.io/', icon: 'fas fa-dharmachakra', category: 'Cloud & DevOps' },
+            { name: 'AWS', description: 'Platform cloud computing yang menawarkan berbagai layanan infrastruktur.', url: 'https://aws.amazon.com/', icon: 'fab fa-aws', category: 'Cloud & DevOps' },
+            { name: 'Google Cloud', description: 'Kumpulan layanan cloud computing dari Google.', url: 'https://cloud.google.com/', icon: 'fab fa-google', category: 'Cloud & DevOps' },
+            { name: 'Microsoft Azure', description: 'Layanan cloud computing untuk membangun, mengelola, dan mendeploy aplikasi.', url: 'https://azure.microsoft.com/', icon: 'fab fa-microsoft', category: 'Cloud & DevOps' },
+            { name: 'Terraform', description: 'Tools Infrastructure as Code untuk mengelola sumber daya cloud.', url: 'https://www.terraform.io/', icon: 'fas fa-code', category: 'Cloud & DevOps' },
+            { name: 'Jenkins', description: 'Server otomatisasi open-source untuk CI/CD.', url: 'https://www.jenkins.io/', icon: 'fas fa-cogs', category: 'Cloud & DevOps' },
+            { name: 'Cloudflare', description: 'Layanan CDN, keamanan web, dan DNS.', url: 'https://www.cloudflare.com/', icon: 'fas fa-cloud', category: 'Cloud & DevOps' },
+            { name: 'DigitalOcean', description: 'Penyedia cloud hosting yang sederhana dan terjangkau.', url: 'https://www.digitalocean.com/', icon: 'fas fa-water', category: 'Cloud & DevOps' },
+            
+            // Kategori: 3D & Animasi
+            { name: 'Three.js', description: 'Library JavaScript untuk membuat grafis 3D di browser.', url: 'https://threejs.org/', icon: 'fas fa-cube', category: '3D & Animasi' },
+            { name: 'Mixamo', description: 'Koleksi aset karakter 3D yang dapat dianimasikan secara gratis dari Adobe.', url: 'https://www.mixamo.com/', icon: 'fas fa-running', category: '3D & Animasi' },
+            { name: 'Sketchfab', description: 'Platform untuk mempublikasikan dan menemukan konten 3D.', url: 'https://sketchfab.com/', icon: 'fas fa-eye', category: '3D & Animasi' },
+            { name: 'Poly Haven', description: 'Aset 3D berkualitas tinggi yang gratis dan dapat digunakan secara komersial.', url: 'https://polyhaven.com/', icon: 'fas fa-mountain', category: '3D & Animasi' },
 
-    // Fungsi baru untuk mengembalikan posisi kursor pada elemen contenteditable
-    function restoreCaretPosition(element, position) {
-        const range = document.createRange();
-        const selection = window.getSelection();
-        let chars = 0;
-        let found = false;
+            // Kategori: Produktivitas & Otomasi
+            { name: 'Notion', description: 'Ruang kerja all-in-one untuk catatan, manajemen proyek, dan kolaborasi.', url: 'https://www.notion.so/', icon: 'fas fa-clipboard', category: 'Produktivitas & Otomasi' },
+            { name: 'Slack', description: 'Alat kolaborasi tim untuk komunikasi yang efisien.', url: 'https://slack.com/', icon: 'fab fa-slack', category: 'Produktivitas & Otomasi' },
+            { name: 'Trello', description: 'Alat manajemen proyek visual berbasis papan Kanban.', url: 'https://trello.com/', icon: 'fab fa-trello', category: 'Produktivitas & Otomasi' },
+            { name: 'Zapier', description: 'Menghubungkan aplikasi web dan mengotomatisasi alur kerja Anda.', url: 'https://zapier.com/', icon: 'fas fa-exchange-alt', category: 'Produktivitas & Otomasi' },
+            { name: 'Todoist', description: 'Aplikasi manajemen tugas yang sederhana dan kuat.', url: 'https://todoist.com/', icon: 'fas fa-check-double', category: 'Produktivitas & Otomasi' },
+            { name: 'Asana', description: 'Manajemen proyek dan alur kerja untuk tim.', url: 'https://asana.com/', icon: 'fab fa-asana', category: 'Produktivitas & Otomasi' },
+            { name: 'Grammarly', description: 'Asisten penulisan yang memeriksa tata bahasa dan ejaan.', url: 'https://www.grammarly.com/', icon: 'fas fa-spell-check', category: 'Produktivitas & Otomasi' },
+            { name: 'Obsidian', description: 'Basis pengetahuan yang kuat di atas folder file teks biasa.', url: 'https://obsidian.md/', icon: 'fas fa-diamond', category: 'Produktivitas & Otomasi' },
+
+            // Kategori: Cybersecurity & Privasi
+            { name: 'OWASP', description: 'Komunitas open-source yang berfokus pada keamanan aplikasi web.', url: 'https://www.owasp.org/', icon: 'fas fa-lock', category: 'Cybersecurity & Privasi' },
+            { name: 'Kali Linux', description: 'Distribusi Linux yang dirancang untuk pengujian penetrasi dan audit keamanan.', url: 'https://www.kali.org/', icon: 'fab fa-linux', category: 'Cybersecurity & Privasi' },
+            { name: 'Metasploit', description: 'Framework pengujian penetrasi open-source yang populer.', url: 'https://www.metasploit.com/', icon: 'fas fa-skull', category: 'Cybersecurity & Privasi' },
+            { name: 'Wireshark', description: 'Analizer protokol jaringan untuk memantau lalu lintas.', url: 'https://www.wireshark.org/', icon: 'fas fa-network-wired', category: 'Cybersecurity & Privasi' },
+            { name: 'ProtonMail', description: 'Layanan email terenkripsi untuk privasi maksimal.', url: 'https://proton.me/mail', icon: 'fas fa-envelope-open-text', category: 'Cybersecurity & Privasi' },
+            { name: 'Tor Project', description: 'Software untuk komunikasi anonim dan melindungi privasi online.', url: 'https://www.torproject.org/', icon: 'fas fa-shield-alt', category: 'Cybersecurity & Privasi' },
+            { name: 'Have I Been Pwned?', description: 'Periksa apakah email atau nomor telepon Anda telah bocor dalam pelanggaran data.', url: 'https://haveibeenpwned.com/', icon: 'fas fa-exclamation-triangle', category: 'Cybersecurity & Privasi' },
+
+            // Kategori: Tools & Ekosistem
+            // Hapus duplikat dari kategori ini, karena sudah ada di kategori lain
+        ];
         
-        for (let node of element.childNodes) {
-            if (node.nodeType === Node.TEXT_NODE) {
-                const nodeText = node.textContent;
-                if (chars + nodeText.length >= position) {
-                    range.setStart(node, position - chars);
-                    range.collapse(true);
-                    found = true;
-                    break;
+        // Memastikan tidak ada duplikasi data berdasarkan 'name'
+        const uniqueLinks = [...new Map(links.map(item => [item.name, item])).values()];
+
+        // Mendapatkan elemen HTML
+        const linkContainer = document.getElementById('linkContainer');
+        const searchInput = document.getElementById('search-input');
+        const categoryButtonsContainer = document.getElementById('category-buttons');
+        const emptyMessage = document.getElementById('empty-message');
+        
+        let activeCategory = 'Semua';
+
+        // Fungsi untuk membuat elemen kartu link secara dinamis
+        function createLinkCard(link) {
+            const card = document.createElement('a');
+            card.classList.add('link-card');
+            card.href = link.url;
+            card.target = '_blank';
+            card.rel = 'noopener noreferrer';
+
+            const iconHtml = `<span class="icon-container"><i class="${link.icon}"></i></span>`;
+            
+            card.innerHTML = `
+                <div class="card-content">
+                    ${link.icon ? iconHtml : ''}
+                    <h2>${link.name}</h2>
+                    <p>${link.description}</p>
+                </div>
+            `;
+            return card;
+        }
+
+        // Fungsi untuk menampilkan link berdasarkan filter yang aktif
+        function renderLinks(filteredLinks) {
+            linkContainer.innerHTML = ''; // Mengosongkan kontainer
+            
+            if (filteredLinks.length === 0) {
+                emptyMessage.style.display = 'block';
+            } else {
+                emptyMessage.style.display = 'none';
+                filteredLinks.forEach(link => {
+                    const linkCard = createLinkCard(link);
+                    linkContainer.appendChild(linkCard);
+                });
+            }
+        }
+
+        // Fungsi untuk membuat tombol kategori secara dinamis dari data link
+        function createCategoryButtons() {
+            // Ambil kategori unik dari array links dan tambahkan kategori "Semua" di awal
+            const categories = ['Semua', ...new Set(uniqueLinks.map(link => link.category))];
+
+            categories.forEach(category => {
+                const button = document.createElement('button');
+                button.classList.add('category-btn');
+                button.textContent = category;
+                button.dataset.category = category;
+                
+                if (category === 'Semua') {
+                    button.classList.add('active');
                 }
-                chars += node.textContent.length;
-            }
-        }
-    
-        if (!found) {
-            range.selectNodeContents(element);
-            range.collapse(false);
-        }
-        
-        selection.removeAllRanges();
-        selection.addRange(range);
-    }
 
-
-    /**
-     * @description Fungsi untuk membuat nomor dokumen otomatis berdasarkan mode dan timestamp.
-     * @returns {string} Nomor dokumen dalam format 'PREFIX-TAHUN-BULAN-TANGGAL-JAM-MENIT'.
-     */
-    function generateDocumentNumber() {
-      const now = new Date();
-      // Mengambil tahun, bulan, tanggal, jam, dan menit. Pastikan format dua digit.
-      const year = now.getFullYear();
-      const month = String(now.getMonth() + 1).padStart(2, '0'); // getMonth() mengembalikan 0-11
-      const day = String(now.getDate()).padStart(2, '0');
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-
-      const prefix = currentMode === 'nota' ? "E-NT-TR" : "E-INV-TR";
-      
-      // Menggabungkan semua komponen menjadi format yang diminta.
-      return `${prefix}-${year}-ORD${month}-${day}-${hours}-${minutes}`;
-    }
-
-    /**
-     * @description Fungsi untuk mendapatkan tanggal hari ini dalam format 'DD Bulan YYYY'.
-     * @param {Date} dateObj - Objek tanggal.
-     * @returns {string} Tanggal yang diformat.
-     */
-    function getFormattedDate(dateObj) {
-      const options = { day: '2-digit', month: 'long', year: 'numeric' };
-      return dateObj.toLocaleDateString('id-ID', options);
-    }
-    
-    /**
-     * @description Fungsi untuk memperbarui data dokumen di tampilan utama secara otomatis.
-     */
-    function updateDocument() {
-      const now = new Date();
-      const tanggalFormatted = getFormattedDate(now);
-      const noDokumen = generateDocumentNumber();
-      
-      if (currentMode === 'nota') {
-        document.getElementById("noNota").textContent = "NO: " + noDokumen;
-        document.getElementById("tanggalNota").textContent = tanggalFormatted;
-        document.getElementById("kepadaNota").textContent = "-"; // Nilai default
-      } else {
-        document.getElementById("noInvoice").textContent = "NO: " + noDokumen;
-        document.getElementById("tanggalInvoice").textContent = tanggalFormatted;
-        document.getElementById("kepadaInvoice").textContent = "-"; // Nilai default
-      }
-    }
-
-    /**
-     * @description Fungsi untuk membuat baris barang baru.
-     * @returns {HTMLTableRowElement} Elemen baris tabel baru.
-     */
-    function createRow() {
-        const newRow = document.createElement("tr");
-        newRow.className = "item-row";
-        newRow.innerHTML = `
-            <td class="item-no"></td>
-            <td><input type="number" class="banyaknya-input" value="1" min="1" oninput="calculateAll()"></td>
-            <td><input type="text" class="nama-barang-input" placeholder="Nama barang/jasa"></td>
-            <td><input type="text" class="harga-input" value="Rp 0" oninput="formatHarga(this); calculateAll()"></td>
-            <td class="jumlah-cell">Rp 0</td>
-            <td></td>
-        `;
-
-        // Menambahkan event listener ke input harga dan nama barang
-        const inputs = newRow.querySelectorAll('input');
-        inputs.forEach(input => {
-            input.addEventListener('focusout', handleInputFocusOut);
-        });
-
-        return newRow;
-    }
-
-    /**
-     * @description Fungsi untuk menambah baris barang baru ke tabel.
-     */
-    function addRow() {
-      const tableBody = document.querySelector(`#tabelBarang${currentMode === 'nota' ? 'Nota' : 'Invoice'} tbody`);
-      const newRow = createRow();
-      tableBody.appendChild(newRow);
-      updateRowNumbers();
-    }
-    
-    /**
-     * @description Menangani penambahan baris baru secara otomatis.
-     * Jika pengguna keluar dari baris terakhir dan semua inputnya tidak kosong, baris baru ditambahkan.
-     * @param {FocusEvent} event
-     */
-    function handleInputFocusOut(event) {
-        const row = event.target.closest('tr');
-        const tableBody = row.parentElement;
-        const rows = Array.from(tableBody.children);
-        const lastRow = rows[rows.length - 1];
-
-        if (row === lastRow) {
-            const inputs = Array.from(row.querySelectorAll('input'));
-            // Cek apakah semua input di baris terakhir memiliki nilai dan harga > 0
-            const allInputsFilled = inputs.every(input => {
-                if (input.classList.contains('harga-input')) {
-                    return parseHarga(input.value) > 0;
-                }
-                return input.value.trim() !== '';
+                button.addEventListener('click', () => {
+                    activeCategory = category;
+                    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    filterLinks();
+                });
+                categoryButtonsContainer.appendChild(button);
             });
-
-            if (allInputsFilled) {
-                // Tambahkan baris baru
-                addRow();
-            }
         }
-    }
 
-    /**
-     * @description Fungsi untuk menghapus baris barang.
-     * @param {HTMLButtonElement} button - Tombol 'Hapus' yang diklik.
-     */
-    function deleteRow(button) {
-      const row = button.closest("tr");
-      const tableBody = row.parentElement;
-      if (tableBody.rows.length > 1) { // Pastikan selalu ada minimal 1 baris
-        row.remove();
-        updateRowNumbers();
-        calculateAll();
-      }
-    }
-
-    /**
-     * @description Fungsi untuk memperbarui nomor urut baris dan tombol aksi.
-     */
-    function updateRowNumbers() {
-        const tableBody = document.querySelector(`#tabelBarang${currentMode === 'nota' ? 'Nota' : 'Invoice'} tbody`);
-        const rows = tableBody.querySelectorAll(".item-row");
-        const rowCount = rows.length;
-
-        rows.forEach((row, index) => {
-            // Perbarui nomor urut
-            row.querySelector(".item-no").textContent = index + 1;
+        // Fungsi utama untuk memfilter link berdasarkan kategori dan teks pencarian
+        function filterLinks() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
             
-            // Perbarui tombol aksi
-            const actionCell = row.querySelector("td:last-child");
-            actionCell.innerHTML = ''; // Kosongkan cell aksi
-
-            if (rowCount > 1 && index < rowCount - 1) {
-                // Tambahkan tombol hapus untuk baris selain yang terakhir
-                const deleteButton = document.createElement('button');
-                deleteButton.className = 'btn-delete';
-                deleteButton.textContent = 'Hapus';
-                deleteButton.onclick = () => deleteRow(deleteButton);
-                actionCell.appendChild(deleteButton);
-            } else if (index === rowCount - 1) {
-                // Tambahkan tombol tambah di baris terakhir
-                const addButton = document.createElement('button');
-                addButton.className = 'btn-add-row'; // Menggunakan class baru untuk gaya
-                addButton.textContent = 'Tambah';
-                addButton.onclick = () => addRow();
-                actionCell.appendChild(addButton);
-            }
-        });
-    }
-
-    // Fungsi untuk memformat dan menghitung ulang ketika input DP di invoice berubah
-    function formatAndCalculate(element) {
-        const initialText = element.textContent;
-        const rawValue = initialText.replace(/[^\d]/g, '');
-        const formattedValue = formatTextHarga(rawValue);
-
-        // Hanya perbarui jika teks berubah
-        if (formattedValue !== initialText) {
-            // Simpan posisi kursor relatif dari akhir string
-            const selection = window.getSelection();
-            let caretOffsetFromEnd = initialText.length - selection.focusOffset;
-
-            // Hapus semua konten dan masukkan teks baru
-            element.textContent = formattedValue;
-            
-            // Hitung posisi kursor baru
-            const newTextLength = formattedValue.length;
-            const newCaretPosition = newTextLength - caretOffsetFromEnd;
-
-            // Kembalikan kursor ke posisi yang tepat
-            const range = document.createRange();
-            const textNode = element.firstChild;
-            
-            if (textNode) {
-                const finalPosition = Math.min(newCaretPosition, textNode.length);
-                range.setStart(textNode, finalPosition);
-                range.collapse(true);
-                selection.removeAllRanges();
-                selection.addRange(range);
-            }
-        }
-        // Hitung ulang semua total
-        calculateAll();
-    }
-
-
-    /**
-     * @description Fungsi untuk menghitung total harga (dan DP/Sisa jika mode invoice).
-     */
-    function calculateAll() {
-      let grandTotal = 0;
-      document.querySelectorAll(`#tabelBarang${currentMode === 'nota' ? 'Nota' : 'Invoice'} .item-row`).forEach(row => {
-        const banyaknya = parseFloat(row.querySelector(".banyaknya-input").value) || 0;
-        const harga = parseHarga(row.querySelector(".harga-input").value);
-        const jumlah = banyaknya * harga;
-        row.querySelector(".jumlah-cell").textContent = "Rp " + jumlah.toLocaleString("id-ID");
-        grandTotal += jumlah;
-      });
-
-      if (currentMode === 'nota') {
-        document.getElementById("totalHargaNota").textContent = "Rp " + grandTotal.toLocaleString("id-ID");
-      } else {
-        // Ambil nilai DP dari elemen contenteditable
-        const dpElement = document.getElementById("dpHarga");
-        const dp = parseHarga(dpElement.textContent);
-        
-        const sisa = grandTotal - dp;
-
-        document.getElementById("totalHargaInvoice").textContent = "Rp " + grandTotal.toLocaleString("id-ID");
-        document.getElementById("sisaHarga").textContent = "Rp " + sisa.toLocaleString("id-ID");
-      }
-    }
-
-    /**
-     * @description Fungsi untuk memeriksa apakah baris transaksi kosong.
-     * @param {Element} row - Elemen baris tabel.
-     * @returns {boolean} True jika baris kosong, false sebaliknya.
-     */
-    function isRowEmpty(row) {
-        const namaBarang = row.querySelector(".nama-barang-input").value.trim();
-        return namaBarang === '';
-    }
-
-    /**
-     * @description Fungsi untuk mencetak dokumen.
-     */
-    function printDocument() {
-        // Identifikasi tabel yang aktif
-        const tableBody = document.querySelector(`#tabelBarang${currentMode === 'nota' ? 'Nota' : 'Invoice'} tbody`);
-        const rows = tableBody.querySelectorAll(".item-row");
-        
-        // Simpan baris-baris kosong yang akan disembunyikan
-        const emptyRows = [];
-        rows.forEach(row => {
-            if (isRowEmpty(row)) {
-                emptyRows.push(row);
-                // Tambahkan kelas untuk menyembunyikan saat dicetak
-                row.classList.add('print-hide');
-            }
-        });
-
-        // Tampilkan watermark
-        const watermarkElementId = currentMode === 'nota' ? "watermark-nota" : "watermark-invoice";
-        const watermarkElement = document.getElementById(watermarkElementId);
-        const now = new Date();
-        const dateOptions = { day: '2-digit', month: 'long', year: 'numeric' };
-        const dateString = now.toLocaleDateString('id-ID', dateOptions);
-        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-        const timeString = now.toLocaleTimeString('id-ID', timeOptions);
-        watermarkElement.textContent = `Dicetak pada: ${dateString}, Pukul ${timeString.replace(/\./g, ':')}`;
-        
-        // Simpan posisi scroll saat ini
-        const scrollPos = window.pageYOffset;
-        
-        // Lakukan pencetakan
-        window.print();
-        
-        // Setelah pencetakan, kembalikan tampilan
-        setTimeout(() => {
-            emptyRows.forEach(row => {
-                // Hapus kelas yang menyembunyikan elemen
-                row.classList.remove('print-hide');
+            const filteredLinks = uniqueLinks.filter(link => {
+                const matchesCategory = activeCategory === 'Semua' || link.category === activeCategory;
+                const matchesSearch = link.name.toLowerCase().includes(searchTerm) || link.description.toLowerCase().includes(searchTerm);
+                
+                return matchesCategory && matchesSearch;
             });
-            window.scrollTo(0, scrollPos); // Kembalikan posisi scroll
-            watermarkElement.textContent = ''; // Hapus watermark
-        }, 100);
-    }
-
-    /**
-     * @description Fungsi untuk mereset semua data di antarmuka.
-     */
-    function resetData() {
-      if (confirm(`Apakah Anda yakin ingin mereset data ${currentMode === 'nota' ? 'nota' : 'invoice'}?`)) {
-        const tableBody = document.querySelector(`#tabelBarang${currentMode === 'nota' ? 'Nota' : 'Invoice'} tbody`);
-        
-        if (currentMode === 'invoice') {
-          // Reset DP langsung di elemen contenteditable
-          document.getElementById("dpHarga").textContent = "Rp 0";
+            
+            renderLinks(filteredLinks);
         }
 
-        // Hapus semua baris dan tambahkan satu baris baru
-        tableBody.innerHTML = "";
-        addRow();
+        // Menambahkan event listener untuk pencarian
+        searchInput.addEventListener('keyup', filterLinks);
+        searchInput.addEventListener('input', filterLinks);
 
-        // Perbarui tampilan dengan data default yang baru
-        updateDocument();
-        calculateAll();
-      }
-    }
+        // Inisialisasi halaman saat pertama kali dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            renderLinks(uniqueLinks);
+            createCategoryButtons();
+            
+            // Mengubah tahun secara otomatis di footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
 
-    /**
-     * @description Fungsi untuk beralih antara Nota dan Invoice.
-     * @param {string} mode - Mode yang akan diaktifkan ('nota' atau 'invoice').
-     */
-    function switchMode(mode) {
-        if (currentMode === mode) return;
-
-        currentMode = mode;
-        const printBtnText = mode === 'nota' ? 'Print Nota' : 'Print Invoice';
-
-        // Mengganti tampilan dokumen
-        notaContainer.classList.toggle('hidden', mode !== 'nota');
-        invoiceContainer.classList.toggle('hidden', mode !== 'invoice');
-
-        // Memperbarui teks tombol print
-        printBtn.textContent = printBtnText;
-
-        // Mengatur status aktif pada tombol switcher
-        btnNota.classList.toggle('active', mode === 'nota');
-        btnInvoice.classList.toggle('active', mode === 'invoice');
-        
-        const tableBody = document.querySelector(`#tabelBarang${currentMode === 'nota' ? 'Nota' : 'Invoice'} tbody`);
-        tableBody.innerHTML = "";
-        addRow(); // Tambahkan satu baris default
-
-        updateDocument();
-        calculateAll();
-    }
-
-    // Event listener saat tombol Nota diklik
-    btnNota.addEventListener('click', () => switchMode('nota'));
-
-    // Event listener saat tombol Invoice diklik
-    btnInvoice.addEventListener('click', () => switchMode('invoice'));
-
-    // Event listener saat halaman dimuat pertama kali
-    window.onload = () => {
-      // Pastikan mode awal adalah 'invoice' dan jalankan fungsi setup
-      switchMode('nota');
-    };
-  </script>
 </body>
 </html>
